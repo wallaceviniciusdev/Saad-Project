@@ -1,0 +1,15 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(ThreatsAnswer.new, remote: remote, html: {role: :form, 'data-model' => 'threat_answer'}) do |f| %>
+
+  <div class="field">
+    <%= f.label :resposta, class: 'control-label' %><br>
+    <%= f.text_area :text,class: 'form-control',rows:4  %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :threat_id, :value => locals[:teste] %>
+  </div>
+  <div class="actions">
+    <center><%= f.submit "Responder ameaça", class: "btn btn-default" %></center>
+  </div>
+<% end %>

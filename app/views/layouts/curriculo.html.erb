@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Saad - Currículo</title>
+
+    <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <%= stylesheet_link_tag 'font-awesome' %>
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+  <%= stylesheet_link_tag 'bootstrap.min.css', media: 'all' %>
+  <%# stylesheet_link_tag 'font-awesome.min.css', media: 'all' %>
+  <%# stylesheet_link_tag 'devicons.min.css', media: 'all' %>
+  <%# stylesheet_link_tag 'simple-line-icons.css', media: 'all' %>
+  <%= stylesheet_link_tag 'resume.min.css', media: 'all' %>
+  <%= stylesheet_link_tag 'bootbox.css', media: 'all' %>
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Start Bootstrap</span>
+        <span class="d-none d-lg-block">
+        <%= image_tag @usuario.avatar.url(:original), class: "img-fluid img-profile rounded-circle mx-auto mb-2" %>
+        </span>
+      </a>
+
+        <%= yield %>
+    <%= javascript_include_tag 'curriculo.js' %>
+    <%= javascript_include_tag 'bootstrap.bundle.min.js' %>
+    <%= javascript_include_tag 'jquery.easing.min.js' %>
+    <%= javascript_include_tag 'resume.min.js' %>
+    <%= javascript_include_tag 'growl' %>
+    <%= javascript_include_tag 'add_reference' %>
+    <%= javascript_include_tag 'informations' %>
+
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+var format = {dateFormat: 'dd-mm-yy',
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+};
+
+    $('#datepicker_experience_start').datepicker(format);
+    $('#datepicker_experience_end').datepicker(format);
+    $('#datepicker_experience_end_f').datepicker(format);
+    $('#datepicker_experience_start_f').datepicker(format);
+</script>
+</body>
+
+</html>

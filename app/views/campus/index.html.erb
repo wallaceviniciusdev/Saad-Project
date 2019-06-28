@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <center><h4>Campus</h4></center>
+    </div>
+    <div class="panel-body">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th>Instituição</th>
+                                <th colspan="2"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% if @campus.size > 0 %>
+                              <% @campus.each do |campu| %>
+                                <tr>
+                                  <td><%= campu.name %></td>
+                                  <td><%= campu.institution.nome %> </td>
+                                  <td><center><%= button_to 'Abrir', campu, :class => "btn btn-primary btn-login btn-sm", method: :get%></center></td>
+                                  <% if current_user.type == 'Administrator'%>
+                                  <td><%= link_to 'Editar', edit_campu_path(campu), :class => "btn btn-primary btn-login btn-sm" %></td>
+<!--                                   <td><%= link_to 'Deletar', campu, method: :delete, :class => "btn btn-primary btn-login btn-sm", data: { confirm: 'Are you sure?' } %></td>
+                                   -->                                  <% end %>
+                                </tr>
+                              <% end %>
+                              <% end %>
+                            </tbody>
+                          </table>
+                      </div>
+                  </div>
+  <br>

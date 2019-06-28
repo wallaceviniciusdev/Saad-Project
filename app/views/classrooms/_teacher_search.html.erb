@@ -1,0 +1,66 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Turmas</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Pesquisar Turma</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<%= javascript_include_tag 'search_learning' %>
+<div class="container">
+    <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Pesquisar Turma
+        <div>
+            <a href="javascript:history.back()"><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></a>
+          </div>
+    </h4>
+  </div>
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="panel-body">
+                <%= form_tag({ :controller => "classrooms", :action => "list"}, { :id => "form2"}) do |f| %>
+                <div class="field row">
+
+                    <%= hidden_field_tag :institution_id, @institution.id %>
+
+                    <%= hidden_field_tag :campu_id, @campu.id %>
+
+                    <%= hidden_field_tag :center_id, @center.id %>
+
+                    <%= hidden_field_tag :course_id, @course.id %>
+
+                    <div class=" col-md-6">
+                    <%= label_tag :Disciplina %>
+                    <%= collection_select(nil, :subject_id, @subjects, :id, :nome,{}, {class: "form-control"})%>
+                    </div>
+                    <div class=" col-md-6">
+                    <%= label_tag :Turma %>
+                    <%= collection_select(nil, :classroom_id, @classrooms, :id, :codigo,{}, {class: "form-control"})%>
+                    </div>
+                  </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <center><%= submit_tag "Buscar" %>
+
+                            </center>
+                        </div>
+                    </div>
+                   <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                
+
+                <%# link_to 'Nova Turma', new_classroom_path %>

@@ -1,0 +1,164 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+ <div class="row">
+      <div class="col-lg-9">
+           
+           <center> 
+              <p class="centered"><%= image_tag current_user.avatar.url(:thumb), class: "img-circle" %></p>
+              <h1 class="text-center">Bem vindo <%= current_user.nome.downcase.titleize%></h1>
+          </center>
+        </div>     
+            <!--Inicio bloco 1-->
+            <div class="col-lg-4">
+               <div class="our-team-main">
+            
+                 <div class="team-front">
+                     <img src="https://image.freepik.com/free-icon/career_318-31359.jpg" class="img-fluid" />
+                     <h3>Carreira</h3>
+                 </div>
+                 <div class="team-back">
+                        <div>  
+
+                      <%= link_to 'Planos de Carreira', principals_area_search_plans_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>
+                      <%= link_to 'Buscar Âncoras', search_results_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" ,method: :post %>
+                      <%= link_to 'Comparar âncoras ', analytics_results_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", method: :post %>
+       
+                        </div>
+                 </div>
+               </div>
+            </div>
+            <!--Fim bloco 1-->
+            
+            <!--Inicio bloco 2-->
+            <div class="col-lg-4">
+                <div class="our-team-main">
+                
+                    <div class="team-front">
+                        <img src="http://placehold.it/110x110/336699/fff?text=Dilip" class="img-fluid" />
+                        <h3>Estilos de aprendizagem</h3>  
+                    </div>
+                    
+                    <div class="team-back">
+                      <%= link_to 'Estilos de aprendizagem', search_learning_results_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" ,method: :post %>
+                      <%= link_to 'Comparar resultados', analytics_learning_results_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" , method: :post %>
+               
+                    </div>
+                </div>
+            </div>
+            <!--Inicio bloco 2-->
+      
+            <!--Inicio bloco 3-->
+            <div class="col-lg-4">
+              <div class="our-team-main">
+              
+                <div class="team-front">
+                    <img src="http://placehold.it/110x110/607d8b/fff?text=Dilip" class="img-fluid" />
+                    <h3>Eventos</h3>
+                </div>
+                
+                <div class="team-back">    
+
+                      <%= link_to 'Novo evento', new_event_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"  %>
+                      
+                      <%= link_to 'Meus eventos', principals_area_my_events_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"  %>                                                   
+                </div>
+              
+              </div>
+            </div>
+            <!--Inicio bloco 3-->
+      
+            <!--Inicio bloco 4-->
+            <div class="col-lg-4">
+                <div class="our-team-main">
+                
+                    <div class="team-front">
+                        <img src="http://placehold.it/110x110/4caf50/fff?text=Dilip" class="img-fluid" />
+                        <h3>Gerenciar Instituições</h3>
+                    </div>
+                    
+                    <div class="team-back">        
+                     <%= link_to 'Instituição', current_user.institution,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>
+                      <%= link_to 'Campus', campus_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>
+
+                      <%= link_to 'Centros', centers_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>
+            
+                                              
+                    </div>
+                
+                </div>
+            </div>
+            <!--Inicio bloco 4-->
+      
+            <!--Inicio bloco 5-->
+            <div class="col-lg-4">
+              <div class="our-team-main">
+              
+                  <div class="team-front">
+                      <img src="http://placehold.it/110x110/e91e63/fff?text=Dilip" class="img-fluid" />
+                      <h3> Gerenciar Cursos</h3>
+                  </div>
+                  
+                  <div class="team-back">         
+                      <%= link_to 'Cursos', courses_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>
+                      <%= link_to 'Disciplinas', subjects_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>
+                      <%= link_to 'Turmas', classrooms_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>
+                      <%= link_to "Buscar turma", search_classrooms_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>                     
+                  </div>
+              
+              </div>
+            </div>
+            <!--Inicio bloco 5-->
+      
+            
+            <!--Inicio bloco 6-->
+            <div class="col-lg-4">
+                <div class="our-team-main">
+                
+                  <div class="team-front">
+                      <img src="http://placehold.it/110x110/2196f3/fff?text=Dilip" class="img-fluid" />
+                      <h3>Perfil</h3>
+                  </div>      
+                      <div class="team-back">                     
+                         <%= link_to"Editar",edit_user_registration_path, style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>                    
+                      </div>
+                
+                </div>
+            </div>
+            <!--Inicio bloco 6-->                              
+    </div>
+
+
+<%= link_to 'Procurar planos de carreira', teachers_area_search_plans_path %><br>
+<%= link_to 'Criar Questionario de ancoras', new_quiz_path %><br>
+<%= link_to 'Buscar resultados', search_results_path %><br>
+<%= link_to 'Comparar resultados', analytics_results_path %><br>
+<%= link_to 'Cria Questionario de estilos de aprendizagem', new_learning_quiz_path %><br>
+<%= link_to 'Buscar resultados de estilos de aprendizagem', search_learning_results_path %><br>
+<%= link_to 'Comparar resultados de estilos de aprendizagem', analytics_learning_results_path %>
+  <br>
+    <%if @pendings_students.size >= 1 %>
+    <strong>Estudantes</strong>
+    <% @pendings_students.each do |pending| %>
+        <p><%= image_tag pending.avatar.url(:thumb) %> <%= pending.nome %> <%= pending.type %> <%= link_to 'Aceitar', coordinators_area_aprove_path(pending: pending), data: { confirm: 'Deseja Aceitar ?' } %></p>
+    <% end %>
+<% end %>
+
+<%if @pendings_teachers.size >= 1 %>
+    <strong>Professores</strong>
+    <% @pendings_teachers.each do |pending| %>
+        <p><%= image_tag pending.avatar.url(:thumb) %> <%= pending.nome %> <%= pending.type %> <%= link_to 'Aceitar', coordinators_area_aprove_path(pending: pending), data: { confirm: 'Deseja Aceitar ?' } %></p>
+    <% end %>
+<% end %>
+
+<%if @pendings_coordinators.size >= 1 %>
+    <strong>Coordenadores</strong>
+    <% @pendings_coordinators.each do |pending| %>
+        <p><%= image_tag pending.avatar.url(:thumb) %> <%= pending.nome %> <%= pending.type %> <%= link_to 'Aceitar', coordinators_area_aprove_path(pending: pending), data: { confirm: 'Deseja Aceitar ?' } %></p>
+    <% end %>
+<% end %>
+<br>
+
+</div>

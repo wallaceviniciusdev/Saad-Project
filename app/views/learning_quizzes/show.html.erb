@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<% @learning_quiz.users.each do |user| %>
+<p>
+  <strong>User:</strong>
+  <%= user.nome %>
+</p>
+<% end %>
+
+<p>
+  <strong>Data final:</strong>
+  <%= @learning_quiz.data_final %>
+</p>
+
+<%= link_to 'Edit', edit_learning_quiz_path(@learning_quiz) %> |
+<%= link_to 'Back', learning_quizzes_path %>

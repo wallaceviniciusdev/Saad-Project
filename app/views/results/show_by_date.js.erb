@@ -1,0 +1,70 @@
+$('#list').html('<%= escape_javascript render (@results) %>');
+
+var content = []
+<% @media.each_with_index do |(key, value), index| %>
+   //print "key: #{key}, value: #{value}, index: #{index}\n"
+    content += '<tr><td><%= index + 1 %></td><td><%= "#{'%.02f' % value}" %></td><td><%= key%></td></tr>';
+
+<% end %>
+
+
+$('#media').html(content);
+
+$('#exports').empty();
+
+<% if @results.size == 1 %>
+    pdf = '<a  class= "btn btn-danger btn-circle pull-right" style= " margin-top: -35px; margin-right: 50px;" id="cmd" onclick="geraPdf(\'<%= @nomeUsuario%>\',\'<%= @ancora1Nome%>\', \'<%= @ancora1Descricao%>\', \'<%= @ancora1Perfil%>\', \'<%= @ancora1Perspectiva%>\', \'<%= @ancora2Nome%>\', \'<%= @ancora2Descricao%>\', \'<%= @ancora2Perfil%>\', \'<%= @ancora2Perspectiva%>\')"><i class="fa  fa-file-pdf-o "></i></a>';
+    $('#exports').append(pdf);
+<% end %>
+$('#chartjs').removeClass('hidden');
+$('#graphic').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: '',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {    
+            categories: ['Competência Técnica e Funcional', 'Dedicação a uma Causa', 'Estilo de Vida', 'Segurança e Estabilidade',
+                     'Competência Administrativa Geral','Criatividade Empreendedora','Desafio Puro','Autonomia e Independência'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            labels: {
+                enabled: false
+             }
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">Pontuação: <b>{point.y:,.2f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'Seleção',
+            data: [<%= @mediaTf %>, <%= @mediaSv %>, <%= @mediaLs %>, <%= @mediaSe %>, <%= @mediaGm %>, <%= @mediaEc %>, <%= @mediaCh %>, <%= @mediaAu %>],
+            pointPlacement: 'on'
+        }]
+
+});

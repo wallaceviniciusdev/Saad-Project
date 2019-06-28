@@ -1,0 +1,234 @@
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700,700i');
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+  @import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
+  *,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
+  body {
+  background-color: #294fa5!important;
+  overflow: hidden!important;
+  margin: 0 auto;
+  padding: 0 auto;
+  font-family: Montserrat!important;
+}
+
+  .listra {
+    background-color: #222;
+    background-size: cover;
+    position: fixed;
+    width: 200%;
+    height: 50%;
+    transform: rotate(-5deg);
+    bottom: -10px;
+    left: 0;
+    margin-left: -150px;
+    z-index: -1;
+  }
+  form input[type="text"].login, input[type="password"].login, input[type="email"].login, select.login {
+  background: white!important;
+  width: calc(100% - 40px);
+  border: 2px solid #AAA;
+  border-radius: 40px;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+ form input:focus {
+  border-color: #294fa5;
+  color: #294fa5;
+}
+
+ form #buttons {
+  margin-top: 10px;
+}
+
+ form #entrar, input[type="submit"] {
+  background-color: #294fa5;
+  width: calc(50% - 50px);
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 40px;
+  float: left;
+  margin-right: 10px;
+}
+
+ form #registrar {
+  background-color: #6f95ec;
+  width: calc(50% - 40px);
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 40px;
+  text-align: center;
+}
+ form input.login:focus {
+  border-color: #294fa5;
+  color: #294fa5;
+}
+form label {
+    font-size: 11px;
+    font-weight: normal!important;
+    color: #AAA;
+}
+
+#login-box {
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.form-login {
+    background-color: white;
+    max-width: 320px;
+    padding: 60px 40px;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    margin: 50px 0 0 0;
+}
+
+.login-header {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.login-header h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 0 0 15px 0;
+}
+
+.login-header p {
+  color: #6f95ec;
+  font-size: 14px;
+}
+
+form label.conected {
+    font-size: 12px;
+    color: black;
+    padding-left: 5px;
+}
+
+form #conected {
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+form a {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.voltar {
+  padding: 10px 15px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: #294fa5;
+  font-size: 14px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+
+@media only screen and (max-width: 950px){
+  .login-header h1 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .login-header p {
+    font-size: 11px;
+    margin-bottom: 30px;
+  }
+  #box {
+    max-width: 300px;
+  }
+
+  #new_user {
+    max-width: 100%!important;
+  }
+
+  #login-box {
+    max-width: 60%!important;
+    padding: 0 10px;
+  }
+
+  .form-login {
+    margin-left: -40px;
+    margin-top: 10px;
+    padding: 30px 40px;
+  }
+
+}
+</style>
+
+ <a href="http://saad.net.br/"><div class="voltar"><i class="fas fa-arrow-left"></i></div></a>
+<div id="login-page">
+  <!-- Comentário teste -->
+  
+  <div class="container">
+    <div id="login-box">
+      <div class="login-header">
+        <h1>Bem-vindo(a) ao SAAD</h1>
+        <p>Faça o seu login para acessar as ferramentas do SAAD</p>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-login"}) do |f| %>
+          <label for="username">Seu e-mail:</label>
+         <%= f.email_field :email, autofocus: true, :class => "login", :placeholder => "Email" %>
+        <br>
+        <label for="password">Sua senha:</label>
+        <%= f.password_field :password, autocomplete: "off", :class => "login", :placeholder => "Password" %>
+        <div id="conected" class="custom-control custom-checkbox my-1 mr-sm-2" style="margin-bottom: 10px!important;">
+          <% if devise_mapping.rememberable? -%>
+            <%= f.check_box :remember_me %>
+            <label class="custom-control-label conected" for="user_remember_me">Lembrar-me</label>
+          <% end -%>
+        </div>
+
+        <a href="/users/password/new"><i class="fas fa-key"></i> Esqueci a senha</a>
+
+        <div id="buttons">
+          <button type="submit" id="entrar">Entrar</button> 
+          <a href="/users/sign_up"><span id="registrar">Registrar</span></a>
+        </div>
+    <% end %>
+    <!--</form>-->
+    </div>
+  </div>
+</div>
+<div class="listra"></div>

@@ -1,0 +1,143 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<style>
+  .form-control, select, input[type="file"] {
+      background: white!important;
+      width: 100%;
+      border: 2px solid #AAA;
+      border-radius: 40px;
+      padding: 10px 20px!important;
+      height: 40px!important;
+      margin-bottom: 15px;
+      font-size: 12px;
+      outline: none;
+      transition: all 0.2s;
+  }
+  .form-control:focus, select:focus, input[type="file"]:focus {
+      border-color: #294fa5!important;
+      color: #294fa5!important;
+      box-shadow: none!important;
+  }
+</style>
+
+<div class="background"></div>
+
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Casos Para Ensino</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Cadastrar Casos para Ensino</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4><%= action %>
+      <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a>
+    </h4>
+  </div>
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="panel-body">
+                <div class="row">
+
+              <div class="col-lg-12">
+
+          <%= javascript_include_tag 'add_reference' %>
+          <%= form_for(@study_case) do |f| %>
+          <% if @study_case.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@study_case.errors.count, "error") %> prohibited this study_case from being saved:</h2>
+            <ul>
+              <% @study_case.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <div class="row">
+              <div class="col-lg-12">
+                <%= f.label :titulo %><br>
+                <%= f.text_field :title,class: "form-control" %>
+              </div>
+          </div><hr>
+          <div class="row">
+              <div class="col-lg-5">
+                <%= f.label :autor %><br>
+                <%= f.text_field :author,class: "form-control" %>
+              </div>
+            <div class="col-lg-3">
+              <div class="field">
+                <label>Caso Publicado em Evento ou Periódico?</label><br>
+                <%= radio_button 'relat', 'atu', 'yes', {:class => "relat__atu relat__atu_yes"}%> Sim
+                <%= radio_button 'relat', 'atu', 'no', {:class => "relat__atu relat__atu_no"} %>  Não
+                <div id="esatu" style="display:none" class="form-group">
+                  <label>Referencia:</label>
+                    <%= text_field_tag :reference ,"",:class => "form-control"%> 
+              </div>
+              </div>
+            </div>
+               <div class="col-lg-4">
+                <%= f.label :area_de_conhecimento %><br>
+                     <%= f.select :area, options_for_select(@knowledges),{} ,class: "form-control" %>
+              </div> 
+
+          </div><hr>
+          <div class="row">
+              <div class="col-lg-4">
+                <%= f.label :tema_primário %><br>
+<!--                 <%= f.text_field :topic,class: "form-control" %>
+               -->
+                     <%= f.select :topic, options_for_select(@main_themes),{} ,class: "form-control" %>
+
+                </div>
+              <div class="col-lg-4">
+                <%= f.label :tema_secundário %><br>
+                <%= f.text_field :topic2 ,class: "form-control"%>
+              </div>
+            <div class="col-lg-3">
+              <div class="field">
+                <%= f.label :recomendado_para_alunos_de %><br>
+                <label>graduação</label>
+                <input type="checkbox" name="recommended[]" value="graduação" />
+                <label>pós-graduação</label>
+                <input type="checkbox" name="recommended[]" value="pós-graduação" />
+              </div>
+            </div>
+              <div class="col-lg-12">
+                <%= f.label :resumo %><br>
+                <%= f.text_area :abstract ,class: "form-control", rows:3%>
+              </div>
+            </div>
+<hr>
+          <div class="row">
+              <div class="col-lg-6">
+                <div class="field">
+                  <%= f.label :arquivo_do_caso_para_ensino %><br>
+                  <%= f.file_field :case_file  %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="field">
+                  <%= f.label :arquivo_das_notas_de_ensino %><br>
+                  <%= f.file_field :notes_file %>
+                </div>
+              </div>
+          </div>
+        <div class="actions">
+          <center><br><%= f.submit fucao  %></center>
+        </div>
+      <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

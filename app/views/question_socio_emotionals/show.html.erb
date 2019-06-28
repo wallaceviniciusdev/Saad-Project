@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data final:</strong>
+  <%= @question_socio_emotional.data_final %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @question_socio_emotional.creator_id %>
+</p>
+
+<strong>Usuarios Participantes: <%= @question_socio_emotional.users.size %></strong>
+<% @question_socio_emotional.users.each do |user| %>
+    <p><%= user.nome%></p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_question_socio_emotional_path(@question_socio_emotional) %> |
+<%= link_to 'Back', question_socio_emotionals_path %>

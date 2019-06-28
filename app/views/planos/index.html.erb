@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Planos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ameacas</th>
+      <th>Respostas ameaca</th>
+      <th>Oportunidades</th>
+      <th>Respostas oportunidades</th>
+      <th>Fraquezas</th>
+      <th>Respostas fraquezas</th>
+      <th>Forcas</th>
+      <th>Respostas forcas</th>
+      <th>Missao</th>
+      <th>Objetivos proximo ano</th>
+      <th>Objetivos cinco anos</th>
+      <th>Objetivos dez anos</th>
+      <th>Objetivos</th>
+      <th>Estrategias</th>
+      <th>Plano objetivo</th>
+      <th>Plano estrategia</th>
+      <th>Plano prazo</th>
+      <th>Plano fator critico</th>
+      <th>Plano recursos</th>
+      <th>Estudante</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @planos.each do |plano| %>
+      <tr>
+        <td><%= plano.user_id %></td>
+        <td><%= link_to 'Show', plano %></td>
+        <td><%= link_to 'Edit', edit_plano_path(plano) %></td>
+        <td><%= link_to 'Destroy', plano, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plano', new_plano_path %>

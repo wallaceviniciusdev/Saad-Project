@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <title>Saad</title>
+
+  <!-- Bootstrap core CSS -->
+    <%= stylesheet_link_tag 'style', 'style-responsive','bootstrap', 'font-awesome' %>
+    <!--external css-->
+    <%= stylesheet_link_tag 'lineicons/style.css' %>
+
+    <!-- Custom styles for this template -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <%= stylesheet_link_tag 'buttons_saad' %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+ <section id="container" >  
+
+    <% if user_signed_in? %>
+        <%= render :partial => 'layouts/navbar' %>
+
+        <% if current_user.type == 'Administrator'%>
+            <%= render :partial => 'layouts/sidebaradmin' %>
+        <% end %>
+    
+    <% end  %>
+    
+    <% if user_signed_in?%>
+       <% if current_user.type =='Administrator'%>
+     <section id="main-content">
+           <section class="wrapper">
+              <div class="row">
+                  <div class="col-lg-12 main-chart">
+        <% else %>
+         <section class="wrapper">
+              <div class="row">
+                  <div class="col-lg-12 main-chart">
+            <% end %>
+      <% end  %>
+                              <%= yield %>
+    <% if user_signed_in? %>
+                  </div>
+              </div>
+          </section>
+
+    </section>
+    <% end  %>
+<!-- js placed at the end of the document so the pages load faster -->
+
+    <%= javascript_include_tag 'bootstrap'%>
+    <%= javascript_include_tag 'growl' %>
+    <%= render partial: 'layouts/notifications' %>
+
+    <% if !user_signed_in? %>
+      <!--BACKSTRETCH-->
+      <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+     
+    <% end  %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+    </section>
+    <!--common script for all pages-->
+        <%# foi alterado para se adequar ao bootstrap notify %>
+</body>
+</html>

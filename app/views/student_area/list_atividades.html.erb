@@ -1,0 +1,89 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<style>
+  @media only screen and (max-width: 600px) {
+    .panel-body {
+      overflow-x: scroll;
+    }
+  }
+</style>
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Atividades</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Atividades</h4>
+  </div>
+  <div class="row">
+    <div class="container">
+
+      <div class="panel-body">
+
+          <div id="table-responsive">
+            <table class="table" style="margin-top: 0; min-width: 100%;">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Descricao</th>
+            <th>Prazo</th>
+            <th>Autor</th>
+            <th>Anexo</th>
+            <th></th>
+            <th ></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @atividades.each do |atividade_extra| %>
+          <% if atividade_extra.status == 'aberta' %>
+            <tr>
+              <td><%= atividade_extra.titulo %></td>
+              <td><%= atividade_extra.descricao %></td>
+              <td><%= atividade_extra.data_final.strftime("%d/%m/%Y") %></td>
+              <td><%= atividade_extra.sender.nome %></td>
+              <td style="text-align: center;"><%= link_to  atividade_extra.arquivo.url(:original, false) do %>
+                  <% if atividade_extra.arquivo_content_type == "application/pdf" %>
+                    <i class="fa fa-file-pdf-o" style="color:#BD1E0F;"></i>
+                  <% else %>
+                    <i class="fa fa-file-word-o" style="color:#08336E;"></i>
+
+                  <% end %>
+              <% end %>
+              <td style="max-width: 10px;"><%= link_to raw("<i class='fas fa-pen-square'></i>"), new_answer_path(:atividade_extra => atividade_extra), class:"link_table"%></td>
+              <%# depois da uma olhada nisso aqui %>
+              <td style="max-width: 10px;"><%= link_to raw("<i class='far fa-eye'></i>"), student_area_list_answers_path(:atividade_extra => atividade_extra), class:"link_table"%></td>
+            </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Atividades - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>

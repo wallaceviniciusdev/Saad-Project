@@ -1,0 +1,50 @@
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Comparar Âncoras de Carreira</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Comparar Âncoras de Carreira
+    <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a></h4>
+  </div>
+      <div class="row">
+          <div class="col-lg-12">
+          <div class="panel-body">
+			<% if current_user.type == 'Teacher' || current_user.type == 'Coordinator'%>
+			    <%= render :partial => 'results/teacher_analytics' %>
+			<% elsif current_user.type == 'Principal' %>
+			    <%= render :partial => 'results/principal_analytics' %>
+			<% end %>
+		  </div>
+		 </div>
+
+</div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Comparar Âncoras de Carreira - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").hide()
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>
+
+

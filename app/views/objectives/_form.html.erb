@@ -1,0 +1,26 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(Objective.new, remote: remote, html: {role: :form, 'data-model' => 'objective'}) do |f| %>
+
+  <div class="field">
+    <%= f.label :prazo %><br>
+    <p>Indique os objetivos de curto, médio e longo prazo</p>
+    <select name="objective[deadline]" id="objective_deadline" class="form-control">
+          <option value="1">1 ano</option>
+          <option value="5">5 anos</option>
+          <option value="10">10 anos</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :objetivo, class: 'control-label' %><br>
+    <%= f.text_area :text %>
+    <span class="help-block"></span>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :plano_id, :value => @plano.id %>
+  </div>
+  <div class="actions">
+    <center><%= f.submit "Criar Objetivo" %></center>
+  </div>
+<% end %>
+ 

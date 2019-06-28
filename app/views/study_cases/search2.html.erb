@@ -1,0 +1,61 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Casos Para Ensino</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Pesquisar Casos Para Ensino</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Pesquisar Casos Para Ensino
+    <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a></h4>
+  </div>
+
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="panel-body">
+                <div class="row">
+
+              <div class="col-lg-12">
+
+                  <%= form_tag list2_study_cases_path, :method => 'get', :class => 'form', :role => 'form' do%>
+		                <div class="col-md-6">
+		                <%= label_tag :area_do_conhecimento %>
+		                <%= select_tag "area_do_conhecimento", options_for_select(@knowledges), :class => "form-control"%>
+		                </div>
+		                <div class="col-md-6">
+		                <%= label_tag :tema_principal %>
+		                <%= select_tag "tema_principal", options_for_select(@main_themes), :class => "form-control"%>
+		                </div>
+
+        		  <% end %>
+
+          </div>
+        </div>
+        <div class="row">
+                    <div class="col-lg-12">
+                        <br><center><%= submit_tag "Pesquisar" %></center>
+                    </div>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+        $('#area_do_conhecimento').prepend("<option value='todos'>Todas</option>");
+        $('#area_do_conhecimento option:first').attr("selected", "selected");
+        $('#tema_principal').prepend("<option value='todos'>Todos</option>");
+        $('#tema_principal option:first').attr("selected", "selected");
+</script>

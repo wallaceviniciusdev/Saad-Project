@@ -1,0 +1,16 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(Weakness.new, remote: remote, html: {role: :form, 'data-model' => 'weakness'}) do |f| %>
+
+  <div class="field">
+    <%= f.label :fraqueza, class: 'control-label' %><br>
+    <%= f.text_area :text %>
+    <span class="help-block"></span>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :plano_id, :value => @plano.id %>
+  </div>
+  <div class="actions">
+    <center><%= f.submit "Criar Fraqueza" %></center>
+  </div>
+<% end %>

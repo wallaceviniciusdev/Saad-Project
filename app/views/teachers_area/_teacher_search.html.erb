@@ -1,0 +1,70 @@
+
+<style>
+    input, textarea, select {
+        background: white!important;
+    width: 100%;
+    border: 2px solid #AAA;
+    border-radius: 40px;
+    padding: 10px 20px!important;
+    height: 40px!important;
+    margin-bottom: 15px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s;
+    }
+</style>
+<%= javascript_include_tag 'search_learning' %>
+<div class="row">
+    <div class="col-lg-12">
+      <div class="panel-body">
+<%= form_tag({ :controller => "teachers_area", :action => "create_video"}, { :id => "form_video"})  do |f| %>
+<div class="row">
+
+    <%= hidden_field_tag :institution_id, @institution.id %>
+
+    <%= hidden_field_tag :campu_id, @campu.id %>
+
+    <%= hidden_field_tag :center_id, @center.id %>
+
+    <%= hidden_field_tag :course_id, @course.id %>
+    <div class="col-md-4">
+        <%= label_tag :titulo %><br>
+        <%= text_field_tag :titulo %>
+   </div>
+    <div class="col-md-4">
+        <%= label_tag :descrição %><br>
+        <%= text_area_tag :description  %>
+    </div>
+    <div class="col-md-4">
+        <%= label_tag :url %><br>
+        <%= text_field_tag :url %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+    <%= label_tag :Disciplina %>
+    <%= collection_select(nil, :subject_id, @subjects, :id, :nome)%>
+    </div>
+    <div class="col-md-4">
+    <%= label_tag :Turma %>
+    <%= collection_select(nil, :classroom_id, @classrooms, :id, :codigo)%>
+    </div>
+    <div class="col-md-4">
+    <%= label_tag :Usuarios %>
+    <%= collection_select(nil, :users_id, @students, :id, :nome)%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+        <%= submit_tag "Enviar"  %>
+    </div>
+    </div>
+   <% end %>
+</div>
+</div>
+
+
+</div>
+</div>

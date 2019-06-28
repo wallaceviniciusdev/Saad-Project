@@ -1,0 +1,95 @@
+  <div class="panel panel-default">
+    <div class="panel-heading">
+     <center><h4><b>Campus</b></h4></center>
+    </div>
+    <div class="panel-body">
+      <h5><center><b>Informações</b></center></h5>
+
+      <section id="unseen">
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Instituição</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <td><%= @campu.name %></td>
+                <td><%= @campu.institution.nome %></td>
+                <% if current_user.type == 'Administrator'%>
+                <td><%= link_to 'Editar', edit_campu_path(@campu), class:"btn btn-primary btn-login btn-sm" %></td>
+                <% end %>
+              </tr>
+          </tbody>
+
+        </table>
+        <br>
+        </section>
+
+      <h5><center><b>Centros Vinculados</b></center></h5>
+
+      <%= link_to "Cadastrar Centro", '#new_center', 'data-toggle' => 'modal', :class => "btn btn-success btn-login btn-sm",  style:  "float: right;" %>
+<br><br>
+
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Visualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @centers.size > 0 %>
+          <% @centers.each do |center| %>
+            <tr>
+              <td><%= center.name %></td>
+              <td><center><%= button_to 'Abrir', center, :class => "btn btn-primary btn-login btn-sm", method: :get %></center></td>
+            </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+
+<div class="modal fade" id="new_center">
+<div class="modal-dialog">
+     <div class="modal-content">
+         <div class="modal-header">
+          <h4> 
+                Cadastrar Centro
+          </h4>
+         </div>
+         <div class="modal-body">
+          <%= form_for(@center) do |f| %>
+            <% if @center.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@center.errors.count, "error") %> prohibited this center from being saved:</h2>
+
+              </div>
+            <% end %>
+
+            <div class="field">
+              <%= f.label :nome %><br>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= f.hidden_field :campu_id, :value => @campu.id %>
+            </div>
+            <div class="actions">
+              <center><%= f.submit "Adicionar Centro", :class => "btn btn-success btn-login btn-sm" %></center>
+            </div>
+          <% end %>
+
+       </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-success btn-login" data-dismiss="modal">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+</div>

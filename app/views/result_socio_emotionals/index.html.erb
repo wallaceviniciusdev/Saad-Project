@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Result Socio Emotionals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cons emoc</th>
+      <th>Reg emoc</th>
+      <th>Cons soc</th>
+      <th>Aut emoc</th>
+      <th>Cria emoc</th>
+      <th>Question socio emotional</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @result_socio_emotionals.each do |result_socio_emotional| %>
+      <tr>
+        <td><%= result_socio_emotional.cons_emoc %></td>
+        <td><%= result_socio_emotional.reg_emoc %></td>
+        <td><%= result_socio_emotional.cons_soc %></td>
+        <td><%= result_socio_emotional.aut_emoc %></td>
+        <td><%= result_socio_emotional.cria_emoc %></td>
+        <td><%= result_socio_emotional.question_socio_emotional_id %></td>
+        <td><%= result_socio_emotional.user_id %></td>
+        <td><%= link_to 'Show', result_socio_emotional %></td>
+        <td><%= link_to 'Edit', edit_result_socio_emotional_path(result_socio_emotional) %></td>
+        <td><%= link_to 'Destroy', result_socio_emotional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result socio emotional', new_result_socio_emotional_path %>

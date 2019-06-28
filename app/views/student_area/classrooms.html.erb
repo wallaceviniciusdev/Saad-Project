@@ -1,0 +1,68 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrum-item">Turmas</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Minhas Turmas</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <center><h4><i class="fa fa-users"></i>Minhas Turmas</h4></center>
+  </div>
+            <div class="panel-body">
+                      <div>
+                          <div class="unseen">
+                            <div class="dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Disciplina</th>
+                                <th>Turma</th>
+                                <th>Turno</th>
+                                <th>Ações</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @classrooms.each do |classroom| %>
+                                <tr>
+                                  <td><%= classroom.subject.nome %></td>
+                                  <td><%= classroom.codigo %></td>
+                                  <td><%= classroom.turno%></td>
+                                  <td><center><%= button_to 'Visualizar', student_area_classroom_show_path(:classroom => classroom.id) %></center></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+</div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Minhas Turmas - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>
+

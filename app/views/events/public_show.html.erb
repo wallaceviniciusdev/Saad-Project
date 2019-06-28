@@ -1,0 +1,89 @@
+<%= link_to 'Voltar', public_events_events_path %>
+<div class="container">
+<div id="exTab3" class="container">
+<div class="row">
+    <div class="col-md-2">
+      <%= image_tag @event.image.url(:thumb) %>
+    </div>
+    <div class="col-sm-10">
+      <h2 class="title_event"><%= @event.nome %></h2>
+    </div>
+  </div>
+
+<ul  class="nav nav-pills">
+      <li class="active">
+        <a  href="#1b" data-toggle="tab">Dados Gerais</a>
+      </li>
+      <li><a href="#2b" data-toggle="tab">Inscrição</a>
+      </li>
+      <li><a href="#3b" data-toggle="tab">Trabalhos</a>
+      </li>
+    </ul>
+
+      <div class="tab-content clearfix">
+        <div class="tab-pane active" id="1b">
+          <h3>Dados Gerais</h3>
+          <p>
+          <strong>Nome:</strong>
+          <%= @event.nome %>
+          </p>
+
+        <p>
+          <strong>Apresentação:</strong>
+          <%= simple_format(@event.apresentacao) %>
+        </p>
+
+         <p>
+          <strong>Informação:</strong>
+          <%= simple_format(@event.informacoes) %>
+        </p>
+        
+        <p>
+          <strong>Objetivos:</strong>
+          <%= simple_format(@event.objetivos) %>
+        </p>
+        
+        <p>
+          <strong>Local:</strong>
+          <%= @event.local %>
+        </p>
+
+        <p>
+          <strong>Data e horário de realização:</strong>
+          <%= @event.date_achievement %>
+        </p>
+        <p>
+          <strong>Criado por:</strong>
+          <%= @event.user.nome %>
+        </p>
+        </div>
+        <div class="tab-pane" id="2b">
+          <h3>Inscrição para o evento</h3>
+          <%= render 'matriculations/form'%>
+        </div>
+        <div class="tab-pane" id="3b">
+          <h3>Submissão de trabalhos</h3>
+        <%if @event.submissao == true %>
+        <p>
+          <strong>Normas</strong>
+          <%= @event.normas %>
+        </p>
+
+        <p>
+          <strong>Tempo Limite</strong>
+          <%= @event.deadline.strftime("%-d/%-m/%y: %H:%M") %>
+        </p>
+
+        <p>
+          <strong>Trabalhos</strong>
+          <%= @event.trabalhos %>
+        </p>
+              <h2>Envio de trabalho</h2>
+              <%= render 'projects/form'%>
+         <%else%>
+         <p>Não há submissões de trabalhos disponíveis</p>
+         <%end%>
+        </div>
+      </div>
+  </div>
+  </div>

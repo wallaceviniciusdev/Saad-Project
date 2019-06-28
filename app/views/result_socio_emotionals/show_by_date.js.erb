@@ -1,0 +1,73 @@
+$('#list').html('<%= escape_javascript render (@result_socio_emotionals) %>');
+
+var content = []
+
+<% @media.each_with_index do |(key, value), index| %>
+   //print "key: #{key}, value: #{value}, index: #{index}\n"
+  content += '<tr> <td><%= key%></td> <td><%= "#{'%.02f'%value.first}" %></td> <td><%= "#{value[value.length-3]}" %></td> </tr>';
+<% end %>
+$('#media').html(content);
+$('#exports').empty();
+
+<% if @result_socio_emotionals.size == 1 %>
+     pdf = '<%= link_to  pdf_list_result_socio_emotionals_path(format: "pdf", result: @result_socio_emotionals.first), class: "btn btn-danger btn-circle pull-right", style: "margin-top: -35px;" do  %>  <i class="fa  fa-file-pdf-o"></i> <% end %>';
+      $('#exports').append(pdf);
+<%end%>
+/*
+<% if @result_socio_emotionals.size == 1 %>
+    pdf = '<a  class= "btn btn-danger btn-circle pull-right" style= " margin-top: -35px; margin-right: 50px;" id="cmd" onclick="geraPdf(\'<%= @nomeUsuario%>\',\'<%= @media_cons_emoc %>\',\'<%= @media_reg_emoc %>\',\'<%= @media_cons_soc %>\',\'<%= @media_aut_emoc %>\',\'<%= @media_cria_emoc %>\',\'<%= @nivel_text_cons_emoc %>\',\'<%= @nivel_text_reg_emoc %>\',\'<%= @nivel_text_cons_soc %>\',\'<%= @nivel_text_aut_emoc %>\',\'<%= @nivel_text_cria_emoc %>\',\'<%= @sol_text_cons_emoc %>\',\'<%= @sol_text_reg_emoc %>\')"><i class="fa  fa-file-pdf-o "></i></a>';
+    
+    $('#exports').append(pdf);
+<% end %>
+*/ 
+
+$('#chartjs').removeClass('hidden');
+$('#graphic').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Competências Socioemocionais',
+            x: -50
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Consciência Emocional', 'Regulação Emocional', 'Consciência Social', 'Autocontrole Emocional', 'Criatividade Emocional'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            labels: {
+                enabled: true
+             }
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">Pontuação: <b>{point.y:,.2f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'Seleção',
+            data: [<%= @media_cons_emoc %>, <%= @media_reg_emoc %>, <%= @media_cons_soc %>, <%= @media_aut_emoc %>, <%= @media_cria_emoc %>],
+            pointPlacement: 'on'
+        }]
+});

@@ -1,0 +1,125 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+<%= javascript_include_tag "SocioEmotionalcreatePdf"%>
+<%= javascript_include_tag "createCsv"%>
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Competências Socioemocionais</li>
+    <li class="breadcrumb-item"><b><a href="javascript:;">Comparar Competências socioemocionais</a></b></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Comparar Competências socioemocionais</h4>
+  </div>
+  <div class="row">
+    <div class="container">
+
+      <div class="panel-body">
+              <div class="alert alert-primary" role="alert">
+                Selecione os parâmetros abaixo para comparar
+              </div>
+              <div class="row">
+                  <div class="col-md">
+                      <div class="form-group">
+ 
+                        <h5>Primeiro parâmetro:</h5>
+                        <%= form_tag(compare_by_date_result_socio_emotionals_path, method: 'post', :remote => true) do %>
+                        <%= hidden_field_tag "selecao", @selecao %>
+
+                        <%= select_tag(:data_final, options_for_select(@datas),:class => "form-control") %>
+                        <% @result_socio_emotionals.map(&:id).each do |id| %>
+                        <%= hidden_field_tag "result_socio_emotionals[]", id %>
+                        <% end %>
+                        <%= hidden_field_tag "allUsers", @allUsers %>
+
+                    </div>
+
+                    </div>
+                    <div class="col-md">
+                      <div class="form-group">
+                      <center>                        
+                        <h5>Segundo parâmetro:</h5>
+                        <%= hidden_field_tag "selecao2", @selecao2 %>
+                        <%= select_tag(:data_final2, options_for_select(@datas2),:class => "form-control") %>
+                        <% @result_socio_emotionals2.map(&:id).each do |id| %>
+                        <%= hidden_field_tag "result_socio_emotionals2[]", id %>
+                        <% end %>
+                      <%= hidden_field_tag "allUsers2", @allUsers2 %>
+                      </center>
+                    
+                    </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md">
+                      <center>
+                      <%= submit_tag "Comparar" %>
+                        <% end %>
+                      </center>
+                  </div>
+              </div>
+                  <div class="row" id="info">
+                      <div class="col-lg-6">
+                        <section id="unseen"><br>
+                            <table id="tabela_resultados" class="table table-bordered table-striped table-condensed">
+                              <thead>
+                                <tr>
+                                  <th>Competência</th>
+                                  <th>Pontuação</th>
+                                  <th>Nivel</th>
+                                </tr>
+                              </thead>
+                              <tbody  id="media">
+                              </tbody>
+                          </table>
+                      </section>
+                    </div>
+                    <div class="col-lg-6">
+                          <section id="unseen"><br>
+                            <table id="tabela_resultados2" class="table table-bordered table-striped table-condensed">
+                              <thead>
+                                <tr>
+                                  <th>Competência</th>
+                                  <th>Pontuação</th>
+                                  <th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody  id="media2">
+                            </tbody>
+                          </table>
+                          </section>
+                    </div>
+              </div>
+              <div id="graphic"></div>
+        </div>
+  </div>
+</div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Comparar Competências Socioemocionais - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>
+

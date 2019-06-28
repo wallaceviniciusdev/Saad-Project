@@ -1,0 +1,80 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><a href="/coordinators_area/search_plans">Buscar Planos</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Resultado</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-lg-12">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4>Lista de Alunos
+        <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a></h4>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+                <div class="col-lg-12">
+                          <div class="unseen">
+                            <div class="dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Matricula</th>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Ações</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <% @users.each do |student| %>
+                                <tr>
+                                  <td><%= student.matricula %></td>
+                                  <td><center><%= image_tag student.avatar.url(:thumb), :class => "photos_users" %></center></td>
+                                  <td><%= student.nome %></td>
+                                  <td><%= student.telefone %></td>
+                                  <td><%= student.email %></td>
+                                  <td>
+                                  <% if student.plano != nil && student.plano.publico == true%>
+                                    <center><%= button_to 'Ver', teachers_area_show_plan_path(:plano => student.plano), :class => "btn btn-primary btn-sm"%></center>
+                                  <% else %>
+                                    Não
+                                  <% end %>
+                                  </td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>                                        
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+    var novo_nome = nome_usuario.split(" ");
+
+    $(document).ready(function() {
+        document.title = 'Lista de Alunos - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+    });
+
+  </script>
+
+
+

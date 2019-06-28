@@ -1,0 +1,316 @@
+<%= javascript_include_tag 'validation_learning' %>
+<%= form_for(@learning_result) do |f| %>
+  <% if @learning_result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@learning_result.errors.count, "error") %> prohibited this learning_result from being saved:</h2>
+
+      <ul>
+      <% @learning_result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <p>O Inventário de Estilo de Aprendizagem descreve a maneira pela qual você aprende e como você lida com as ideias e as situações do dia-a-dia em sua vida. Abaixo, você encontrará 12 sentenças.</p>
+      <p>Classifique com "4" a sentença que descreve como você aprende melhor, descendo até chegar a "1" para a sentença que você considera que é a maneira menos provável de como você aprenderia algo.</p>
+      <p>Procure recordar algumas situações recentes em que teve que aprender algo novo, talvez em seu trabalho ou na universidade.</p>
+      <p><strong>Não é possível repetir os valores em cada sentença</strong></p>
+  <hr>
+  <div class="field">
+    <h4><strong>Enquanto aprendo: </strong></h4>
+    <div class="row">
+      <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q1a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de lidar com meus sentimentos")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q1b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de pensar sobre ideias")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q1c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de estar fazendo coisas")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q1d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de observar e escutar")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+   <h4><strong>Aprendo melhor quando: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q2a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Ouço e observo com atenção")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q2b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me apóio em pensamento lógico")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q2c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Confio em meus palpites e impressões")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q2d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Trabalho com afinco para executar a tarefa")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Quando estou aprendendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q3a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Tendo a buscar explicações para as coisas")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q3b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou responsável acerca das coisas")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q3c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Fico quieto e concentrado")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q3d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Tenho sentimentos e reações fortes")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Aprendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q4a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sentindo")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q4b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Fazendo")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q4c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Observando")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q4d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Pensando")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Enquanto aprendo</strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q5a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me abro a novas experiências")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q5b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Examino todos os ângulos da questão")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q5c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de analisar as coisas, desdobrá-las em partes")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q5d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de testar as coisas")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Enquanto estou aprendendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q6a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa observadora")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q6b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa ativa")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q6c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa intuitiva")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q6d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa lógica")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Aprendo melhor através de: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q7a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Observação")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q7b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Interações pessoais")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q7c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Teorias racionais")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q7d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Oportunidades para experimentar e praticar")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Enquanto aprendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q8a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de ver os resultados de meu trabalho")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q8b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de ideias e teorias")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q8c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Penso antes de agir")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q8d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sinto-me pessoalmente envolvido no assunto")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Aprendo melhor quando: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q9a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me apóio em minhas observações")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q9b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me apóio em minhas impressões")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q9c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Posso experimentar coisas por mim mesmo")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q9d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me apóio em minhas ideias")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Quando estou aprendendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q10a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa compenetrada")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q10b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa flexível")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q10c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa responsável")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q10d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou uma pessoa racional")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Enquanto aprendo: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q11a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Me envolvo todo")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q11b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de observar")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q11c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Avalio as coisas")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q11d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Gosto de estar ativo")%>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="field">
+    <h4><strong>Aprendo melhor quando: </strong></h4>
+    <div class="row">
+    <div class="alert alert-danger" style="display: none;"><strong>Não é possível repetir os valores em cada sentença</strong></div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q12a, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Analiso as ideias")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q12b, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou receptivo e de mente aberta")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q12c, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou cuidadoso")%>
+      </div>
+      <div class="form-group col-md-3">
+        <%= f.number_field :q12d, min: 1, max: 4, class: 'form-control' %>
+        <%= label_tag("Sou prático")%>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :data_final, :value => @data_final %>
+  </div>
+  <div class="actions">
+   <center><%= f.submit "Enviar", class: 'btn btn-login', disabled: true %>
+    <%= link_to "Voltar", admin_index_path ,:class => "btn  btn-theme  btn-danger", :style=>'color:#FFFFFF;' %><br/>
+
+   </center> 
+  </div>
+<% end %>

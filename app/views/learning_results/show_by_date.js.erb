@@ -1,0 +1,130 @@
+$('#list').html('<%= escape_javascript render (@learning_results) %>');
+
+
+var content = []
+
+$('#exports').empty();
+<% if @learning_results.size == 1 %>
+     pdf = '<%= link_to  pdf_list_learning_results_path(format: "pdf", result: @learning_results.first), class: "btn btn-danger btn-circle pull-right", style: "margin-top: -35px;" do  %>  <i class="fa  fa-file-pdf-o"></i> <% end %>';
+      $('#exports').append(pdf);
+<%end%>
+
+var categories = ['Experiência Concreta', 'Observação Reflexiva', 'Conceituação Abstrata', 'Experimentação Ativa'],
+    count = 0;
+
+Highcharts.chart('graphic', {
+            chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Habilidades'
+        },
+
+        pane: {
+            startAngle: 0,
+        },
+
+
+        xAxis: {
+            tickInterval: 1,
+            min: 0,
+            max: 4,
+            tickmarkPlacement: 'on',
+            categories: categories,
+
+        },
+
+
+        yAxis: {
+            min: 0,
+            max: 46,
+            labels: {
+                enabled: false
+             }
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 1,
+                 pointPlacement: 'on'
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0,
+            }
+        },
+
+        credits: {
+            enabled: false
+        },
+
+
+        series: [{
+            type: 'area',
+            name: 'Score',
+            data: [<%= @mediaEc %>,<%= @mediaOr %>, <%= @mediaCa%>,<%= @mediaEa %>]
+        }]
+
+});
+
+console.log("saiu");
+
+var categories = ['Reflexivo', 'Teórico', 'Pragmatico', 'Ativo'],
+    count = 0;
+
+Highcharts.chart('graphic2', {
+
+            chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Estilos de Aprendizagem'
+        },
+
+        pane: {
+            startAngle: 45
+        },
+
+        xAxis: {
+            tickInterval: 1,
+            min: 0,
+            max: 4,
+            tickmarkPlacement: 'on',
+            categories: categories,
+        },
+
+        yAxis: {
+            min: 0,
+            max: 46,
+              labels: {
+                enabled: false
+             }
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 1,
+                pointPlacement: 'on'
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+
+        credits: {
+            enabled: false
+        },
+
+        series: [{
+            type: 'area',
+            name: 'Score',
+            color: '#ff6600',
+            data: [<%= @mediaDi %>, <%= @mediaAs %>, <%= @mediaCo %>, <%= @mediaAc %>]
+        }]
+
+});

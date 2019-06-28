@@ -1,0 +1,110 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<style>
+  @media only screen and (max-width: 600px) {
+    .panel-body {
+      overflow-x: scroll;
+    }
+  }
+</style>
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrum-item">Casos de Ensino</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Meus Casos de Ensino</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Meus Casos de Ensino</h4>
+  </div>
+
+            <div class="panel-body">
+
+          <h4>Casos Em Aberto</h4>
+          <div id="table-responsive">
+            <table class="table" style="margin-top: 0; width: 100%;">
+      <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Tema Principal</th>
+            <th>Caso</th>
+            <th  style="width: 80px;">Prazo</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+ <tbody>
+    <% @line_cases.each do |line_case| %>
+      <tr>
+        <td><%= line_case.study_case.title %></td>
+        <td><%= line_case.study_case.topic %></td>
+        <td><%= link_to  line_case.study_case.case_file.url(:original, false),class:"btn btn-default btn-sm" do %>
+                <% if line_case.study_case.case_file_content_type == "application/pdf" %>
+                  <i class="fa fa-file-pdf-o" style="color:#BD1E0F;"></i>
+                <% else %>
+                  <i class="fa fa-file-word-o" style="color:#08336E;"></i>
+
+                <% end %>
+            <% end %>
+          </td>
+        <td><%= line_case.data_final.strftime("%d/%m/%Y") %></td>
+        <td><%= link_to  line_case, class:"btn btn-default btn-sm" do %>
+          <i class="fa fa-share-square" style="color:#0040ff;"></i>
+          <% end %>
+        </td>
+<!--           <td><%= link_to 'Edit', edit_line_case_path(line_case) %></td>
+                       <td><%= link_to 'Destroy', line_case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               -->              
+      </tr>
+<!--       <table>
+    <thead>
+<tr>
+  <th>Study case</th>
+  
+</tr>
+    </thead>
+
+    <tbody>
+<% line_case.users.each do |user| %>
+  <tr>
+    <td><%= user.nome %></td>
+  </tr>
+<% end %>
+    </tbody>
+  </table>
+<br> -->
+
+    <% end %>
+  </tbody>      </table>
+
+      </section>
+
+      </div>
+    </div>
+</div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Meus Casos de Ensino - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>
+

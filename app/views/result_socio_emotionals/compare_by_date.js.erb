@@ -1,0 +1,79 @@
+$('#list').html('<%= escape_javascript render (@result_socio_emotionals) %>');
+
+var content = []
+<% @media.each_with_index do |(key, value), index| %>
+  content += '<tr><td><%= key%></td> <td><%= "#{'%.02f'%value.first}" %></td> <td><%= "#{value[value.length-3]}" %> </tr>';
+
+<% end %>
+
+
+$('#media').html(content);
+
+
+$('#list2').html('<%= escape_javascript render (@result_socio_emotionals2) %>');
+var content = []
+<% @media2.each_with_index do |(key, value), index| %>
+     content += '<tr><td><%= key%></td> <td><%= "#{'%.02f'%value.first}" %></td> <td><%= "#{value[value.length-3]}" %> </tr>';
+<% end %>
+
+
+$('#media2').html(content);
+
+$('#graphic').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Comparação de Competências Socioemocionais',
+            x: -50
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Consciência Emocional', 'Regulação Emocional','Consciência Social', 'Autocontrole Emocional','Criatividade Emocional'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0 
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            labels: {
+                enabled: false
+             }
+        },
+
+        tooltip: {
+            shared: true,
+            pointFormat: '<span style="color:{series.color}">Pontuação: <b>{point.y:,.2f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'Seleção 1',
+            data:  [<%= @media_cons_emoc %>, <%= @media_reg_emoc %>, <%= @media_cons_soc %>, <%= @media_aut_emoc %>, <%= @media_cria_emoc  %>],
+            pointPlacement: 'on'
+        }, {
+            name: 'Seleção 2',
+            data: [<%= @media_cons_emoc2 %>, <%= @media_reg_emoc2 %>, <%= @media_cons_soc2 %>, <%= @media_aut_emoc2 %>, <%= @media_cria_emoc2 %>],
+            pointPlacement: 'on'
+        }]
+
+});
+
+
+
+

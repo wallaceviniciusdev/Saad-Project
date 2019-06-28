@@ -1,0 +1,130 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<style>
+  .btn-primary, .btn-primary:hover, .btn-primary:focus {
+    background-color: #007bff!important;
+    color: white!important;
+    padding: 5px 20px;
+    font-family: "Montserrat"!important;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  h1.display-4 {
+    color: #1E29BD!important;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .alert {
+    text-align: justify;
+  }
+
+  .btn-outline-primary {
+    margin-bottom: 10px;
+  }
+
+  table.table thead {
+    background: #1E29BD;
+    color: white!important;
+    font-weight: bold!important;
+  }
+
+  table.table thead .table-bordered th {
+    border: red 1px solid!important;
+  }
+
+  .badge-warning {
+      color: #212529!important;
+      background-color: #ffc107!important;
+      margin-top: 10px;
+  }
+</style>
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Disciplinas</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b><%= @subject.nome %></b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+
+
+<div class="container">
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+          <%= @subject.nome %>
+          <a href="javascript:history.back()"><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></a>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="jumbotron">
+          <h1 class="display-4"><%= @subject.nome %></h1>
+          <p class="lead">
+            <div class="alert alert-primary" role="alert">
+              <%= @subject.ementa %>
+            </div>
+          </p>
+          <h5>
+            <button type="button" class="btn btn-outline-primary"><b><i class="far fa-clock"></i> Carga Horaria: </b><%= @subject.ch %></button>
+            <button type="button" class="btn btn-outline-primary"><b><i class="fas fa-info-circle"></i> Código: </b> <%= @subject.codigo %></button>
+            <button type="button" class="btn btn-outline-primary"><b><i class="fas fa-book"></i> Curso: </b> <%= @subject.course.nome %></button>
+
+          </h5>
+          
+          <hr>
+          <h4 style="color: #1E29BD!important;margin: 20px 0 0 0;"><b>Turmas Vinculadas</b></h4>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th style="font-weight: bold!important;">Turma</th>
+                <th style="font-weight: bold!important;">Turno</th>
+                <th style="font-weight: bold!important;">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @subject.classrooms.each do |classroom| %>
+                <tr>
+                  <td><%= classroom.codigo %></td>
+                  <td><%= classroom.turno%></td>
+                  <td><center><b><%= link_to 'Ver', classroom, method: :get%></b></center></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <!--<h4><b>Informações</b></h4>
+        <h5><b>Nome: </b><%= @subject.nome %></h5>
+        <h5><b>Carga Horaria: </b><%= @subject.ch %>, <b>Código: </b> <%= @subject.codigo %>, <b>Curso: </b> <%= @subject.course.nome %></h5>
+        <h5><b>Ementa:</b><%= @subject.ementa %></h5>
+        <br>
+
+        -->
+
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = '<%= @subject.nome %> - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+</script>

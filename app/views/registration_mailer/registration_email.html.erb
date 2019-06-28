@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><img src="http://saad.net.br/wp-content/uploads/2018/09/mais-claro.jpg" alt="SAAD" width="75" height="75">
+</h1>
+        <h2>Confirmação de inscrição</h2>
+        
+        <h3>Caro(a) <%= @matriculation.nome%>,</h3>
+         <h3>Sua inscrição no evento <%= @event.nome %> está confirmada.</h3>
+        
+        <h4>
+        Informações sobre o evento:
+        </h4>
+
+        <p>
+          <strong>Apresentação:</strong>
+          <%= simple_format(@event.apresentacao) %>
+        </p>
+
+        <p>
+          <strong>Informação:</strong>
+          <%= simple_format(@event.informacoes) %>
+        </p>
+        
+        <p>
+          <strong>Objetivos:</strong>
+          <%= simple_format(@event.objetivos) %>
+        </p>
+        <p>
+          <strong>Data e horário de realização:</strong>
+          <%= @event.date_achievement %>
+        </p>
+    
+  </body>
+</html>

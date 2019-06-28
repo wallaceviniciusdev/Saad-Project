@@ -1,0 +1,749 @@
+ 
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style>
+  @import url("https://daneden.github.io/animate.css/animate.min.css");
+  body {
+    background: #f2f7fb!important;
+    font-family: 'Montserrat'!important;
+  }
+
+  .header {
+    z-index: 0;
+  }
+
+  .dropdown {
+    display: inline-block;
+    top: -5px;
+  }
+
+  .img-circle {
+    width: 35px;
+    height: 35px;
+  }
+
+  .background {
+    background: #1E29BD;
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    z-index: -1;
+    top: -60px;
+    left: 0;
+  }
+
+  .breadcrumb {
+    width: 100%;
+    background-color: white;
+    padding: 15px 30px;
+    margin: 35px 0 27px 0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.05);
+    left: 0;
+  }
+  
+  .atividades {
+    width: 250px;
+    min-height: 300px;
+    max-height: 300px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05),0 0 0 1px rgba(0,0,0,0.05);
+    position: absolute;
+    z-index: 4;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .atividades:nth-child(1){
+    margin-left: -100px;
+  }
+
+  .atividades::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 225px;
+    margin-top: -22px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+  }
+  
+  .atividades h1 {
+    color: #294fa5!important;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 20px;
+  }
+
+  .atividades h1 i {
+    color: #294fa5!important;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .user-slide {
+    padding: 20px 0;
+  }
+
+  .user-slide h1 {
+    color: white;
+    font-size: 30px;
+    margin-top: 25px;
+  }
+
+  .user-slide h6 {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .user-slide button {
+    background-color: #3498db;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    font-weight: bold;
+    margin-top: 15px;
+    outline: none;
+  }
+
+  .user-slide .user-img {
+    width: 116px;
+    height: 116px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    margin-right: 40px;
+    margin-top: 30px;
+    float: left;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .links {
+    margin-top: 20px;
+  }
+
+  .btn-primary {
+    padding: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    color: #007bff!important;
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .card {
+    height: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px 30px;
+  }
+
+  .card:hover {
+  }
+
+  .card-columns .card {
+    margin-bottom: 10px;
+  }
+
+  .box-title h6 {
+    color: grey;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  } 
+  
+  .box-title h1 {
+    max-width: 200px;
+    color: #294fa5;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .box-title span {
+    padding: 12px 16px;
+    border-radius: 50px;
+    font-size: 16px;
+    color: white;
+    float: right;
+    margin-top: -6px;
+  }
+  
+  .modal-header {
+    background-color: #1E29BD;
+    padding: 15px 30px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .modal-content {
+    border-radius: 6px;
+    top: 40%;
+    position: absolute;
+  }
+  
+  .panel-default > .panel-heading {
+    color: white!important;
+    background-color: #1E29BD;
+    border: none;
+    padding: 15px 30px;
+  }
+
+  .panel-default > .panel-heading > h4 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .panel {
+    border: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  }
+
+  .nav-pills .nav-link {
+    background-color: rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Montserrat'!important;
+    cursor: pointer;
+    height: 40px;
+    padding-top: 12px;
+    line-height: 40px;
+  }
+
+  .nav-pills > .nav-link > h4 {
+    font-size: 12px!important;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #1E29BD!important;
+  }
+
+  .tab-content h3 {
+    font-weight: bold;
+    padding: 15px 0;
+  }
+
+  select.form-control {
+    background: white!important;
+    width: 100%;
+    border: 2px solid #AAA;
+    border-radius: 40px;
+    padding: 10px 20px!important;
+    height: 40px!important;
+    margin-bottom: 15px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+ select:focus {
+  border-color: #294fa5!important;
+  color: #294fa5!important;
+  box-shadow: none!important;
+}
+
+.status_edit {
+  color: #294fa5;
+  font-family: 'Montserrat'!important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 15px 0 10px 0;
+}
+
+input[type="submit"]  {
+  background-color: #294fa5!important;
+  width: 100%;
+  padding: 10px 20px!important;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 40px;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.botao_pdf {
+  background-color: #3498db;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: white!important;
+  margin-top: -8px;
+  margin-right: -22px;
+}
+
+.botao_pdf:hover, .botao_pdf:focus {
+  background-color: #2980b9!important;
+}
+
+.in {
+  opacity: 1!important;
+  background-color: rgba(0,0,0,0.4);
+}
+
+textarea {
+  background: white!important;
+    width: 100%;
+    border: 2px solid #AAA;
+    border-radius: 5px;
+    padding: 10px 20px!important;
+    height: 120px!important;
+    margin-bottom: 15px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+textarea:focus {
+  border-color: #294fa5!important;
+  color: #294fa5!important; 
+}
+
+  @media only screen and (max-width: 600px) {
+    .user-slide .user-img {
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 80px;
+    }
+
+    .user-slide h1 {
+      font-size: 22px;
+    }
+    
+    .user-slide h6 {
+      font-size: 12px;
+    }
+
+    .user-slide {
+      text-align: center;
+    }
+
+
+    .pull-right {
+      margin-top: -75px!important;
+    }
+
+    .ativ-notification h6 {
+      display: none;
+    }
+
+    .card-columns {
+      margin-top: 150px!important;
+    }
+
+    a.logo img {
+      width: 70px!important;
+    }
+
+    .box-title h1 {
+      font-size: 16px;
+    }
+
+    .box-title h6 {
+      font-size: 9px;
+    }
+
+    .box-title span {
+      padding: 9px 12px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><a href="javascript:;">Plano de Carreira</a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+ <%= javascript_include_tag 'plano_modal' %>
+ <div class="container">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Plano de Carreira <%= link_to  student_area_pdf_plan_path(format: 'pdf'), :class => "botao_pdf", style:  "float: right;" do  %> 
+            <i class="fa  fa-file-pdf-o "></i>
+        <% end %>
+    </h4>
+    
+  </div>
+          <div class="panel-body">
+                <div class="col-lg-12">
+                <%= render partial: 'layouts/form_plan' %>
+
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-pills flex-column flex-sm-row" role="tablist">
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link active" href="#forcas" aria-controls="forcas" role="tab" data-toggle="tab"><h4>Forças</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#oportunidades" aria-controls="oportunidades" role="tab" data-toggle="tab"><h4>Oportunidades</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#fraquezas" aria-controls="fraquezas" role="tab" data-toggle="tab"><h4>Fraquezas</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#ameacas" aria-controls="ameacas" role="tab" data-toggle="tab"><h4>Ameaças</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#missao" aria-controls="missao" role="tab" data-toggle="tab"><h4>Minha missão</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#objetivos" aria-controls="objetivos" role="tab" data-toggle="tab"><h4>Objetivos</h4></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="forcas">
+                          <h3>&nbsp;Forças 
+                          <button class="warning btn btn-warning btn-sm" id= "forc", style="float: right;">&nbsp;<i class="fa fa-info" >&nbsp; </i>
+                          </button>
+                          <div style="float: right;">
+                            &nbsp;
+                          </div>
+                          <%= link_to  '#new_strength_modal', 'data-toggle' => 'modal', :class => "btn btn-success btn-sm",  style:  "float: right; ",:title => "Adicionar força" do %>   
+                            <i class="fa fa-plus" ></i>
+                            <% end %>
+
+</h3>
+
+                            <hr>
+                            <div id = "strengths"><%= render @strengths %></div>
+                            <% if @strength_notes != nil && @strength_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações de forças</h2>
+                              <% @strength_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label" > &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do%>
+                                              <i class="fa fa-close" ></i>
+                                          <% end %>
+                                          
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% elsif  @strength_notes == nil && @strength_notes.size == 0%>
+                              <div class="alert alert-primary" role="alert">
+                                Você ainda não adicionou nenhuma Força;
+                              </div>
+                            <% end %>
+                            <div class="modal fade" id="new_strength_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_strength_modal_title">Criar Nova Força</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'strengths/form', modal: true %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="oportunidades">
+                        <h3>&nbsp;Oportunidades 
+                          
+                          <button class="warning btn btn-warning btn-sm" id= "oport" style="float: right;">&nbsp;<i class="fa fa-info" >&nbsp; </i>
+                           </button>
+
+                          <div style="float: right;">
+                            &nbsp;
+                          </div>
+                          <%= link_to  '#new_opportunity_modal', 'data-toggle' => 'modal', :class => "btn btn-success btn-sm", style: "float: right;",:title => "Adicionar Oportunidade" do %>   
+                            <i class="fa fa-plus" ></i>
+                            <% end %>
+                        </h3>
+                            <hr>
+                            <div id = "opportunities"><%= render @opportunities%></div>
+                            <% if @opportunity_notes != nil && @opportunity_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações sobre oportunidades</h2>
+                              <% @opportunity_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label"> &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do %>
+                                              <i class="fa fa-close" ></i>
+                                          <% end %>
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% end %>
+                            <div class="modal fade" id="new_opportunity_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_opportunity_modal_title">Criar Nova Oportunidade</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'opportunities/form', modal: true %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="fraquezas">
+                        <h3>&nbsp;Fraquezas 
+                          <button class="warning btn btn-warning btn-sm" style="float: right;" id= "fraq">&nbsp;<i class="fa fa-info" >&nbsp; </i></button>
+                          <div style="float: right;">
+                            &nbsp;
+                          </div>
+                        <%= link_to  '#new_weakness_modal', 'data-toggle' => 'modal', :class => "btn btn-success btn-sm", style: "float: right;",:title => "Adicionar Fraqueza" do %> 
+                            <i class="fa fa-plus" ></i>
+                        <% end %>
+                        </h3>
+                            <hr>
+                            <div id = "weaknesses"><%= render @weaknesses%></div>
+                          <% if @weakness_notes != nil && @weakness_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações de fraquezas</h2>
+                              <% @weakness_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label"> &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do%>
+                                            <i class="fa fa-close" ></i>
+                                          <% end %>
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% end %>
+                            <div class="modal fade" id="new_weakness_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_opportunity_modal_title">Criar Nova Fraquesa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'weaknesses/form', modal: true %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="ameacas">
+                        <h3>&nbsp;Ameaças 
+                          <button class="warning btn btn-warning btn-sm" style="float: right;" id= "ameac">&nbsp;<i class="fa fa-info" >&nbsp; </i>
+                          </button>
+                          <div style="float: right;">
+                            &nbsp;
+                          </div>
+                        <%= link_to '#new_threat_modal', 'data-toggle' => 'modal', :class => "btn btn-success btn-sm", style: "float: right;",:title => "Adicionar Ameaça" do%>
+                              <i class="fa fa-plus" ></i>
+                          <% end %>
+
+                        </h3>
+                            <hr>
+                            <div id = "threats"><%= render @threats%></div>
+                          <% if @threat_notes != nil && @threat_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações de ameaças</h2>
+                              <% @threat_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label"> &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do %>
+                                              <i class="fa fa-close" ></i>
+                                          <% end %>
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% end %>
+                            <div class="modal fade" id="new_threat_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_opportunity_modal_title">Criar Nova Ameaça</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body"><%= render 'threats/form', modal: true %></div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                                            <div role="tabpanel" class="tab-pane" id="objetivos">
+                        <h3>&nbsp;Objetivos 
+                          <button class="warning btn btn-warning btn-sm" style="float: right;" id= "objects">&nbsp;<i class="fa fa-info" >&nbsp; </i>
+                          </button>
+                          <div style="float: right;">
+                            &nbsp;
+                          </div>
+
+                          <%= link_to  '#new_objective_modal', 'data-toggle' => 'modal', :class => "btn btn-success btn-sm", style: "float: right;",:title => "Adicionar Objetivo" do%>
+                              <i class="fa fa-plus" ></i>
+                          <% end %>
+                        </h3>
+                        <hr>
+                        <div id = "objectives"><%= render @objectives%></div>
+                        <% if @objective_notes != nil && @objective_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações de objetivos</h2>
+                              <% @objective_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label"> &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do%>
+                                              <i class="fa fa-close" ></i>
+                                          <% end %>
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% end %>
+                            <div class="modal fade" id="new_objective_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_opportunity_modal_title">Criar Novo Objetivo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'objectives/form', modal: true %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                    </div>
+                      <div role="tabpanel" class="tab-pane" id="missao">
+                        <%= form_for(@plano) do |f| %>
+                        <div class="form-group">
+                          <h3>&nbsp;Minha missão</h3>
+                            <p>&nbsp;Reflita sobre sua missão, a razão de ser de seus esforços e do seu emprego de seus talentos e recursos. Registre-os abaixo. Atualize o plano para salvar alterações</p><br>
+                          <div>
+                              <%= f.text_area :mission, :class => "", rows: 4%><br>
+                          </div>
+                          <% if @mission_notes != nil && @mission_notes.size > 0%>
+                              <h2>&nbsp;<i class="fa fa-angle-right"></i>Observações sobre missão</h2>
+                              <% @mission_notes.each do |note|%>
+                                    <div>
+                                        <label class="control-label"> &nbsp; &nbsp; &nbsp; • Observação: <%= note.texto %> • Autor: <%= note.sender.nome %> <%= link_to  note, method: :delete, data: { confirm: 'Deseja realmente excluir?' }, :class => "btn btn-danger btn-sm", :title => "Deletar Observação" do%>
+                                              <i class="fa fa-close" ></i>
+                                          <% end %>
+                                        </label><br>
+                                    </div>
+                              <% end %>
+                            <% end %>
+                        </div>
+                  </div>
+              </div>
+      </div>
+  </div>
+  <div class="row" style="padding: 0 30px;">
+    <div class="col-lg-12">
+          <div class="form-group">
+          <p class="status_edit"><i class="fas fa-exclamation-circle"></i> Status do Plano de Carreira</p>
+          <center><%= f.select :publico, [['Raschunho', false] , ['Finalizado', true]], {}, {class: "form-control"} %></center>
+          <div class="alert alert-primary" role="alert">
+            Somente planos finalizados ficarão visíveis para os professores
+          </div>
+
+
+        <div class="actions">
+          <%= f.submit ( f.object.new_record? ? "Criar plano" : "Atualizar plano") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  
+  
+  <script type="text/javascript">
+    var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+    var novo_nome = nome_usuario.split(" ");
+
+    $(document).ready(function() {
+        document.title = 'Plano de Carreira - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+    });
+
+
+
+
+    var forca = $("#strengths")
+    var oportunidades = $("#opportunities")
+    var fraquezas = $("#weaknesses")
+    var ameca = $("#threats")
+    var objetivos = $("#objectives")
+
+    if(forca.html() == ""){
+      forca.html("<div class='alert alert-danger' role='alert'>Vocẽ ainda não adicionou nenhuma Força.</div>")
+    }
+    if(oportunidades.html() == ""){
+      oportunidades.html("<div class='alert alert-danger' role='alert'>Vocẽ ainda não adicionou nenhuma Oportunidade.</div>")
+    }
+    if(fraquezas.html() == ""){
+      fraquezas.html("<div class='alert alert-danger' role='alert'>Vocẽ ainda não adicionou nenhuma Fraqueza.</div>")
+    }
+    if(ameca.html() == ""){
+      ameca.html("<div class='alert alert-danger' role='alert'>Vocẽ ainda não adicionou nenhuma Ameaça.</div>")
+    }
+    if(objetivos.html() == ""){
+      objetivos.html("<div class='alert alert-danger' role='alert'>Vocẽ ainda não adicionou nenhum Objetivo.</div>")
+    }
+
+  $("#forc").click(function(){
+      $.notify({
+        message: ' Características e condições pessoais que poderão afetar positivamente sua carreira ou seus objetivos nos próximos anos'
+      },{
+        type: 'pastel-info',
+        delay: 5000,
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+          '<span data-notify="title">{1}</span>' +
+          '<span data-notify="message">{2}</span>' +
+        '</div>'
+      });
+    });
+  $("#fraq").click(function(){
+      $.notify({
+        message: 'Características e condições pessoais que poderão afetar negativamente sua carreira ou seus objetivos nos próximos anos'
+      },{
+        type: 'pastel-info',
+        delay: 5000,
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+          '<span data-notify="title">{1}</span>' +
+          '<span data-notify="message">{2}</span>' +
+        '</div>'
+      });
+    });
+  $("#oport").click(function(){
+      $.notify({
+        message: ' Eventos externos que poderão afetar positivamente sua carreira ou seus objetivos nos próximos anos'
+      },{
+        type: 'pastel-info',
+        delay: 5000,
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+          '<span data-notify="title">{1}</span>' +
+          '<span data-notify="message">{2}</span>' +
+        '</div>'
+      });
+    });
+  $("#ameac").click(function(){
+      $.notify({
+        message: '  Eventos externos que poderão afetar negativamente sua carreira ou seus objetivos nos próximos anos'
+      },{
+        type: 'pastel-info',
+        delay: 5000,
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+          '<span data-notify="title">{1}</span>' +
+          '<span data-notify="message">{2}</span>' +
+        '</div>'
+      });
+    });
+  $("#objects").click(function(){
+      $.notify({
+        message: 'Quais os seus objetivos para o próximo ano, para daqui a cinco anos e dez anos? Reflita para isso, com base nas análises realizadas anteriormente e na missão que você definiu.'
+      },{
+        type: 'pastel-info',
+        delay: 5000,
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+          '<span data-notify="title">{1}</span>' +
+          '<span data-notify="message">{2}</span>' +
+        '</div>'
+      });
+    });
+
+  </script>
+  </div>

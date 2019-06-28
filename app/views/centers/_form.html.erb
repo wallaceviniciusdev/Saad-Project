@@ -1,0 +1,37 @@
+<%= form_for(@center) do |f| %>
+  <% if @center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@center.errors.count, "error") %> prohibited this center from being saved:</h2>
+
+      <ul>
+      <% @center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="col-lg-12">
+
+  <div class="row">
+    <div class="form-group"> 
+      <div class="col-lg-6">
+        <%= f.label :name %><br>
+        <%= f.text_field :name , class: "form-control" %>
+      </div>
+      <div class="col-lg-6">
+      <%= label_tag :campu %><br>
+        <%= autocomplete_field_tag :campu, params[:campu], autocomplete_campu_name_campus_path, :id_element => '#center_campu_id', class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :campu_id %>
+  </div>
+  <br> 
+  <div class="actions">
+    <center><%= f.submit 'Atualizar', class: "btn btn-primary btn-login btn-sm" %>
+    </center>
+  </div>
+<% end %>

@@ -1,0 +1,72 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Disciplinas</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<style>
+  .badge-warning {
+      color: #212529!important;
+      background-color: #ffc107!important;
+  }
+</style>
+
+  <div class="container">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Disciplinas</h4>
+        <div style="display: inline;">
+          <a href="<%= new_subject_path %>"><span class="badge badge-warning"><i class="fa fa-plus"></i> Adicionar Disciplina</span></a>
+          <a href="javascript:history.back()"><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></a>
+        </div>
+
+    </div>
+    <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+          <thead>
+
+            <tr>
+              <th>Nome</th>
+              <th>Carga Horária</th>
+              <th>Codigo</th>
+              <th>Curso</th>
+              <th colspan="3"><center>Ações</center></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @subjects.each do |subject| %>
+              <tr>
+                <td><%= subject.nome %></td>
+                <td><%= subject.ch %></td>
+                <td><%= subject.codigo %></td>
+                <td><%= subject.course.nome %></td>
+                <td><%= link_to 'Abrir', subject %></td>
+                <td><%= link_to 'Editar', edit_subject_path(subject)%></td>
+                <td><%= link_to 'Deletar', subject, method: :delete, data: { confirm: 'Deseja realmente excluir?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      </div>
+</div>
+  </div>
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Disciplinas - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+</script>

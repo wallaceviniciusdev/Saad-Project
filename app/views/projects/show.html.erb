@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @project.titulo %>
+</p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @project.autor %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @project.email %>
+</p>
+
+<p>
+  <strong>Resumo:</strong>
+  <%= @project.resumo %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @project.tags %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @project.tipo %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @project.estado %>
+</p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @project.event.nome %>
+</p>
+
+<%= form_tag  observation_projects_path, multipart: true do%>
+  <div class="field">
+    <%= label_tag :observação %><br>
+    <%= text_area_tag :observation %>
+  </div>
+  <div class="field">
+    <%= hidden_field_tag :project, @project.id %>
+  </div>
+  <div class="field">
+    <%= label_tag :arquivo %><br>
+    <%= file_field_tag :file %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "fazer observação"%>
+  </div>
+<% end %>
+
+
+<%= link_to 'Editar', edit_project_path(@project) %> |
+<%= link_to 'Voltar', @project.event %>

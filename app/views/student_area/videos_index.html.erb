@@ -1,0 +1,73 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>SAAD TV</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>SAAD TV</h4>
+  </div>
+  <div class="row">
+    <div class="container">
+<div class="panel-body">
+<div class="row mt">
+  <div class="col-lg-12">
+      <div class="content-panel">
+        <div class="row mt">
+        <% if @videos != nil %>
+            <% @videos.each do |video| %>
+            <div class="col-lg-6">
+                <div class="row mt">
+                    <div class="col-lg-8">
+                        <iframe width="540" height="340" src="<%= "http://www.youtube.com/embed/"+ video.url %>"></iframe>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>
+                            <strong>Título:</strong> Título do vídeo<br>
+                            <strong>Enviado por:</strong> <%= video.sender.nome%><br>
+                            <strong>Descrição:</strong> <%= video.description %><br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+        </div>
+
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Vídeos - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>

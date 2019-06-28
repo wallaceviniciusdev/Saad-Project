@@ -1,0 +1,59 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Turmas</li>
+    <li class="breadcrumb-item">Pesquisar Turma</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Minhas Turmas</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Minhas Turmas
+      <div>
+            <a href="javascript:history.back()"><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></a>
+          </div>
+    </h4>
+  </div>
+            <div class="panel-body">
+                          <div class="unseen">
+                            <div class="dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Disciplina</th>
+                                <th>Ano</th>
+                                <th>Semestre</th>
+                                <th>Turma</th>
+                                <th>Turno</th>
+                                <th>Ações</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @classrooms.each do |classroom| %>
+                                <tr>
+                                  <td><%= classroom.subject.nome %></td>
+                                  <td><%= classroom.ano %></td>
+                                  <td><%= classroom.semestre %></td>
+                                  <td><%= classroom.codigo %></td>
+                                  <td><%= classroom.turno%></td>
+                                  <td><center><%= button_to 'Visualizar', classroom, method: :get%></center>  
+                                  </td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+      </div>
+<br>

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <center><h4>Diretores</h4></center>
+        <%# para colocar o botao verde par aa direita %>
+        <%= link_to new_principal_path, class: "btn btn-primary btn-login  btn-sm pull-right", style:  "margin-top : -35px" do  %> 
+            <i class="fa fa-plus"></i>
+        <% end %>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+             <div class="table-responsive">
+                      <section id="unseen">
+                          <div id = "dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Telefone</th>
+                                <!--<th>Biografia</th>
+                                <th>Matricula</th>-->
+                                <th>Email</th>
+                                <!--<th>Autorizado</th>-->
+                                <th colspan="2"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @principals.each do |principal| %>
+                                <tr>
+                                  <td><center><%= image_tag principal.avatar.url(:thumb), class: "photos_users", width:40, height:40  %></center></td>
+                                  <td><%= principal.nome %></td>
+                                  <td><%= principal.matricula %></td>
+                                  <td><%= principal.telefone %></td>
+                                  <!--<td><%= principal.biografia %></td>
+                                  <td><%= principal.matricula %></td>-->
+                                  <td><%= principal.email %></td>
+                                  <!--<td><%= principal.approved %></td>-->
+
+                                  <td style="width: 100px">
+                                  <%= link_to edit_principal_path(principal) , class: "btn btn-primary btn-login btn-sm" do %> 
+                                    <i class="fa fa-edit"></i>
+                                <% end %>
+
+                                  <%= link_to  principal, method: :delete, class:"btn btn-danger btn-login btn-sm", data: { confirm: 'Deseja realmente excluir?' } do %>
+                                    <i class="fa fa-minus"></i>
+
+                                  <% end %>
+</td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                      </div>
+                    </section>
+                </div>
+            </div>
+      </div>

@@ -1,0 +1,90 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+<div class="background"></div>
+
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><b><a href="javascript:;">Âncoras de Carreira</a></b></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<style>
+  .btn-danger {
+    margin-top: -23px!important;
+    margin-right: 10px!important;
+  }
+</style>
+
+<%= javascript_include_tag "createPdf"%>
+<%= javascript_include_tag "createCsv"%>
+<div class="container">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4>Âncoras de Carreira</h4>
+        <%= link_to '#', id: "export", class: "btn btn-success btn-circle pull-right", style:  "margin-top : -23px" do  %> 
+            <i class="fa  fa-file-excel-o "></i>
+        <% end %>
+        <div id='exports'>
+        </div>
+ 
+</div>
+<div class="panel-body">
+  <div class="alert alert-primary" role="alert">
+    Selecione uma das datas abaixo para visualizar o resultado
+  </div>
+
+
+  <%= form_tag(show_by_date_results_path, method: 'post', :remote => true) do %>
+    <%= hidden_field_tag "selecao", @selecao %>
+
+    <%= select_tag(:data_final, options_for_select(@datas),:class => "form-control" )  %>
+
+    <% @results.map(&:id).each do |id| %>
+      <%= hidden_field_tag "results[]", id %>
+    <% end %>
+    <%= hidden_field_tag "allUsers", @allUsers %>
+
+    <div class="row" id="info" style="margin: 20px 0;">
+      <div class="col-md">
+        <div id="graphic"></div>
+      </div>
+      <div class="col-md">
+        <table id="tabela_resultados" class="table-responsive table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Ordem</th>
+                <th>Pontuação</th>
+                <th>Âncoras</th>
+              </tr>
+            </thead>
+            <tbody  id="media">
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <%= submit_tag "Visualizar Âncora" %>
+  <% end %>
+</div>
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Âncoras de Carreira - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+
+  $("#info").hide()
+  $(document).submit(function(){
+    $("#info").fadeIn(1000)
+    $("#info").addClass("animated bounceInUp")
+  })
+
+</script>

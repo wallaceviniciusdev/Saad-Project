@@ -1,0 +1,49 @@
+<%= form_for(@result_socio_emotional) do |f| %>
+  <% if @result_socio_emotional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result_socio_emotional.errors.count, "error") %> prohibited this result_socio_emotional from being saved:</h2>
+
+      <ul>
+      <% @result_socio_emotional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :data_final %><br>
+    <%= f.date_select :data_final %>
+  </div>
+  <div class="field">
+    <%= f.label :cons_emoc %><br>
+    <%= f.text_field :cons_emoc %>
+  </div>
+  <div class="field">
+    <%= f.label :reg_emoc %><br>
+    <%= f.text_field :reg_emoc %>
+  </div>
+  <div class="field">
+    <%= f.label :cons_soc %><br>
+    <%= f.text_field :cons_soc %>
+  </div>
+  <div class="field">
+    <%= f.label :aut_emoc %><br>
+    <%= f.text_field :aut_emoc %>
+  </div>
+  <div class="field">
+    <%= f.label :cria_emoc %><br>
+    <%= f.text_field :cria_emoc %>
+  </div>
+  <div class="field">
+    <%= f.label :question_socio_emotional_id %><br>
+    <%= f.number_field :question_socio_emotional_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,100 @@
+  <div class="panel panel-default">
+    <div class="panel-heading">
+       <center><%= image_tag @institution.avatar.url(:thumb) , width:30, height:40 %>
+       <h4><%= @institution.nome%></h4></center>
+        <%if current_user.type == 'Administrator'%>
+
+          <%= link_to "Editar", edit_institution_path(@institution), class: "btn btn-primary btn-login  btn-sm pull-right", style:  "margin-top : -50px" %> 
+        <% end %>
+    </div>
+    <div class="panel-body">
+        <center><h4><b>Informações</b></h4></center>
+        
+        <h5><b>Nome: </b> <%= @institution.nome %></h5>
+
+        <h5><b>Organização Acadêmica: </b>
+         <%= @institution.organizacao_academica %></h5>
+        
+         <h5><b>Categoria Administrativa: </b> <%= @institution.categoria_administrativa %></h5> 
+        
+         <h5><b>Site: </b> <%= @institution.site %></h5>
+        
+        <center><h4><b>Endereço</b></h4></center>
+        
+        <h5>Rua <%= @institution.logradouro %>, <%= @institution.numero %> - Bairro <%= @institution.bairro %>,<%= @institution.cidade %>-<%= @institution.estado %>, <%= @institution.cep %> </h5>
+        
+        <h5>Telefone para contato: <%= @institution.tel %></h5>
+        
+        <center><h4><b>Campus</b></h4></center>
+<%= link_to "Cadastrar Campus", '#new_course', 'data-toggle' => 'modal', :class => "btn btn-success btn-login btn-sm",  style:  "float: right;" %>
+<br><br>
+                     <div class="table-responsive">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Nome</th>
+                                <th colspan="1"></th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                                        <% if @campus.size > 0 %>
+                                        <% @campus.each do |campu| %>
+                                          <tr>
+                                            <td><%= campu.name %></td>
+                                            <td><center><%= button_to 'Abrir', campu, :class => "btn btn-primary btn-login btn-sm", method: :get%></center></td>
+                                          </tr>
+                                        <% end %>
+                                        <% end %>
+                                      </tbody>
+                                    </table>
+                        </div>
+
+
+
+      </div>
+</div>
+
+<div class="modal fade" id="new_course">
+<div class="modal-dialog">
+     <div class="modal-content">
+         <div class="modal-header">
+          <h4> 
+                Cadastrar Campus
+          </h4>
+         </div>
+         <div class="modal-body">
+          <%= form_for(@campu) do |f| %>
+            <% if @campu.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@campu.errors.count, "error") %> prohibited this campu from being saved:</h2>
+
+                <ul>
+                <% @campu.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          <br>
+            <div class="field">
+              <%= f.label :nome %><br>
+              <%= f.text_field :name , class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.hidden_field :institution_id, :value => @institution.id %>
+            </div>
+            <div class="actions">
+              <center><%= f.submit "Adicionar Campus", :class => "btn btn-success btn-login btn-sm"%></center>
+            </div>
+          <% end %>
+
+       </div>
+       <div class="modal-footer">
+           <button type="button" class="btn btn-success btn-login" data-dismiss="modal">Fechar</button>
+       </div>
+    </div>
+  </div>
+</div>
+

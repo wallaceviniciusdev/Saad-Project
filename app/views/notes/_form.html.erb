@@ -1,0 +1,23 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+
+<%= form_for(Note.new, remote: remote, html: {role: :form, 'data-model' => 'note'}) do |f| %>
+
+  <div class="field">
+    <%= f.label :Observação %><br>
+    <%= f.text_area :texto , class: 'form-control',rows:4  %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :topico, :value => topico, readonly: true %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :sender_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :recipient_id, :value => @plano.user.id %>
+  </div>
+
+  <div class="actions">
+    <center><%= f.submit "Criar Observação", class: "btn btn-default" %></center>
+  </div>
+<% end %>

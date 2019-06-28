@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <center><h4>Professores</h4><center>
+        <%# para colocar o botao verde par aa direita %>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+             <div class="table-responsive">
+                      <section id="unseen">
+                          <div id = "dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Telefone</th>
+                                <!--<th>Biografia</th>
+                                <th>Matricula</th>-->
+                                <th>Email</th>
+                                <!--<th>Autorizado</th>-->
+                                <th colspan="2"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @teachers.each do |teacher| %>
+                                <tr>
+                                  <td><center><%= image_tag teacher.avatar.url(:thumb), class: "photos_users", width:40, height:40  %></center></td>
+                                  <td><%= teacher.nome %></td>
+                                  <td><%= teacher.matricula %></td>
+                                  <td><%= teacher.telefone %></td>
+                                  <!--<td><%= teacher.biografia %></td>
+                                  <td><%= teacher.matricula %></td>-->
+                                  <td><%= teacher.email %></td>
+                                  <!--<td><%= teacher.approved %></td>-->
+
+                                  <td style="width: 50px">
+
+                                  <%= link_to  teacher, method: :delete, class:"btn btn-danger btn-login btn-sm", data: { confirm: 'Deseja realmente excluir?' } do %>
+                                    <i class="fa fa-minus"></i>
+
+                                  <% end %>
+
+                                  </td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                      </div>
+                    </section>
+                </div>
+            </div>
+      </div>

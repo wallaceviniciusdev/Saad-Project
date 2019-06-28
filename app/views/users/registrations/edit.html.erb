@@ -1,0 +1,189 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<style>
+  form input, .form-control {
+    background: white!important;
+    width: 100%;
+    border: 2px solid #AAA;
+    border-radius: 40px;
+    padding: 3px 20px!important;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+}
+form label {
+    font-size: 11px;
+    font-weight: normal!important;
+    color: #AAA;
+}
+
+
+.botao_voltar {
+  background-color: #333!important;
+  width: 100%;
+  padding: 10px 20px!important;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white!important;
+  border-radius: 40px;
+  float: left;
+  text-align: center;
+}
+
+.botao_voltar:hover {
+  background-color: #333!important;
+}
+
+form input:focus {
+    border-color: #294fa5!important;
+    color: #294fa5!important;
+    box-shadow: none!important;
+}
+
+</style>
+
+<div class="base-top"></div>
+
+<div class="container">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4><i class="fa fa-user"></i> Editar Perfil</h4>
+  </div>
+        <div class="panel-body">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|%>
+        <%= devise_error_messages! %>
+
+        <div class="row">
+
+                <div class="form-group col-md">                  
+                      <%= f.label :nome%>
+                      <%= f.text_field :nome, :class => "form-control" %>
+                </div>   
+
+                <div class="form-group col-md">
+                    <%= f.label :matricula%>
+                    <%= f.text_field :matricula, :class => "form-control" %>
+                </div>  
+
+                <div class="form-group col-md">
+                  <label for="user_nivel">Nível </label>
+                  <%= f.text_field :nivel, :class => "form-control" %>
+                </div>    
+
+        </div>
+
+        <div class="row">
+                <div class="form-group col-lg">
+                        <label>CPF</label>
+                        <%= f.text_field :cpf, :class => "form-control" %>
+                </div>      
+
+                <div class="form-group col-lg">
+                    <%= f.label :telefone   %>
+                    <%= f.text_field :telefone, :class => "form-control" %>
+                </div>       
+
+                <div class="form-group col-lg">
+                    <%= f.label :sexo   %>
+                    <%= f.text_field :sex, :class => "form-control" %>
+                </div>   
+        </div>
+
+        <div class="row">          
+
+                <div class="form-group col-md">
+                    <%= f.label :endereço  %>
+                    <%= f.text_field :endereco, :class => "form-control" %>
+                </div>
+
+               <div class="form-group col-md">
+                    <%= f.label :cidade %>
+                    <%= f.text_field :city, :class => "form-control"%>
+                </div>          
+
+                <div class="form-group col-md">
+                    <%= f.label :estado %>
+                    <%= f.text_field :state, :class => "form-control"%>
+                </div>     
+
+                <div class="form-group col-md">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+                </div>
+
+         </div>
+
+         <div class="row">            
+                <div class="form-group col-lg">
+                    <%= f.label :avatar %>
+                    <%= f.file_field :avatar, :class => "form-control" %>
+                </div>                 
+
+                <div class="form-group col-lg">
+                  <%= f.label :lattes %>
+                  <%= f.text_field :lattes, :class => "form-control" %>
+                </div>           
+        </div>
+
+        <!--<div class="row">
+          <div class="form-group col-lg">
+              <%= f.label :biografia %>
+              <%= f.text_area :biografia, :class => "form-control",rows:3 %>
+          </div>    
+        </div>-->
+        <hr>
+
+        <div class="row">                
+        
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>                  
+                     
+                  <div class="form-group col-md">
+                        <%= f.label :senha_atual  %>
+                        <%= f.password_field :current_password, autocomplete: "off", :class => "form-control" %>
+                        <br><i>(Insira sua senha atual para validar as mudanças)</i>
+                  </div>
+            
+                  <div class="form-group col-md">
+                        <%= f.label :nova_senha %>
+                        <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+                        <br><i>(Deixe em branco caso não queira mudar sua senha)</i>
+                  </div>                
+                  
+                  <div class="form-group col-md">
+                      <%= f.label :confirmação_nova_senha %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
+                        <br><i>(Repita o valor preenchido no campo anterior)</i>
+                  </div>           
+          </div>
+
+
+          <div class="row">
+            <div class="col-md">
+              <%= f.submit "Atualizar" %>
+            </div>
+            <div class="col-md">
+              <%= link_to "Voltar", admin_index_path ,:class => "botao_voltar" %>
+            </div>
+          </div>
+           <% end %>
+</div>  
+
+<script>
+  var user_verf = "<%= current_user.type %>"
+
+  $(".base-top").html('<div class="background"></div>')
+
+  if(user_verf == "Student"){
+    $(".base-top").html('<div class="background"></div><div class="navegacao"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="/">Início</a></li><li class="breadcrumb-item"><a href="javascript:;"><b>Editar Perfil</b></a></li></ol></nav></div></div>')
+  }
+</script>

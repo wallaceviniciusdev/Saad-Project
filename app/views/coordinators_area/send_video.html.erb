@@ -1,0 +1,9 @@
+<%= javascript_include_tag "teachers_area" %>
+<h2><i class="fa fa-angle-right"></i>Enviar Vídeo</h2>
+<% if current_user.type == 'Teacher' || current_user.type == 'Coordinator'%>
+    <%= render :partial => 'coordinators_area/teacher_search' %>
+<% elsif current_user.type == 'Principal' %>
+    <%= render :partial => 'coordinators_areas/principal_search' %>
+<% end %>
+
+

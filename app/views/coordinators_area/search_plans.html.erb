@@ -1,0 +1,78 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Buscar Planos</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<%= javascript_include_tag 'search_learning' %>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Buscar Planos
+    <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a></h4>
+  </div>
+          <div class="panel-body">
+            <%= form_tag({ :controller => "coordinators_area", :action => "list"}, { :id => "form2"}) do |f| %>
+            <div class="field">
+
+                <%= hidden_field_tag :institution_id, @institution.id %>
+
+                <%= hidden_field_tag :campu_id, @campu.id %>
+
+                <%= hidden_field_tag :center_id, @center.id %>
+
+                <%= hidden_field_tag :course_id, @course.id %>
+            </div>
+            <div class="field" >
+                <div class="row">
+                    <div class="col-md campo_compare">
+                        <%= label_tag :Disciplina %>
+                        <%= collection_select(nil, :subject_id, @subjects, :id, :nome,{}, class: "form-control")%>
+                    </div>
+                    <div class="col-md campo_compare">
+                    <%= label_tag :ano %>
+                    <%= select_tag "ano", options_for_select(@anos),class:"form-control"%>
+                    </div>
+                    <div class="col-md campo_compare">
+                    <%= label_tag :semestre %>
+                    <%= select_tag "semestre", options_for_select(@semestres), class:"form-control"%>
+                    </div>
+                    <div class="col-md campo_compare">
+                    <%= label_tag :Turma %>
+                    <%= collection_select(nil, :classroom_id, @classrooms, :id, :codigo,{},class:"form-control")%>
+                    </div>
+                    <div class="col-md campo_compare">
+                    <%= label_tag :Usuarios %>
+                    <%= collection_select(nil, :users_id, @students, :id, :nome,{},class:"form-control")%>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md">
+                        <%= submit_tag "Buscar"  %>
+                    </div>
+                    <!--<div class="col-md">
+                        <%= link_to "Voltar", admin_index_path ,:class => "btn", :style=>'color:#FFFFFF;' %>
+                    </div>-->
+            </div>
+   <% end %>
+ </div>
+</div>
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Buscar Planos - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+</script>

@@ -1,0 +1,57 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Turmas</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Turmas
+          <div>
+            <a href="<%= new_classroom_path %>"><span class="badge badge-warning"><i class="fas fa-plus"></i> Adicionar Turma</span></a>
+            <a href="javascript:history.back()"><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></a>
+          </div>
+        </h4> 
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>Ano</th>
+            <th>Semestre</th>
+            <th>Turno</th>
+            <th>Nome</th>
+            <th colspan="3"><center>Ações</center></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @classrooms.each do |classroom| %>
+            <tr>
+              <td><%= classroom.subject.nome %></td>
+              <td><%= classroom.ano %></td>
+              <td><%= classroom.semestre %></td>
+              <td><%= classroom.turno %></td>
+              <td><%= classroom.codigo %></td>
+              <td><center><%= button_to 'Detalhes', classroom, method: :get%></center></td>
+              <td><%= button_to 'Editar', edit_classroom_path(classroom), method: :get %></td>
+              <%if current_user.type == 'Administrator'%>
+                <td><%= link_to 'Deletar', classroom, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-login btn-sm" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

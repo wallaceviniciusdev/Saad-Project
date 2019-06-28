@@ -1,0 +1,242 @@
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,700,700i');
+  @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+  @import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
+  *,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
+ body {
+  background-color: #294fa5!important;
+  overflow-x: hidden;
+}
+
+.listra {
+  background-color: #222;
+  position: fixed;
+  width: 200%;
+  height: 50%;
+  transform: rotate(-5deg);
+  bottom: -20px;
+  margin-left: -50px;
+  z-index: -1;
+}
+
+.login-header {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.login-header h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.login-header p {
+  color: #6f95ec;
+  font-size: 14px;
+}
+
+.form-login {
+	margin: 20px auto 0;
+}
+
+#login-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.form-new_user {
+  background-color: white;
+  width: 100%;
+  padding: 40px 40px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+ form .title {
+  text-align: center;
+}
+
+ form .title img {
+  margin-bottom: 20px;
+}
+
+ form .title h1 {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+ form .title p {
+  color: #AAA;
+  font-size: 12px;
+}
+
+ form label {
+  font-size: 11px;
+  color: #AAA;
+}
+
+ form a {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+form input, .form-control {
+  background: white!important;
+  width: calc(100% - 40px);
+  border: 2px solid #AAA;
+  border-radius: 40px;
+  padding: 3px 20px!important;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.2s;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+input {
+  background: white!important;
+}
+
+select.form-control {
+  background: white!important;
+  width: calc(100% - 40px);
+  border: 2px solid #AAA;
+  border-radius: 40px;
+  padding: 3px 20px!important;
+  margin-bottom: 15px;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+ form input:focus {
+  border-color: #294fa5!important;
+  color: #294fa5!important;
+  box-shadow: none!important;
+}
+
+ form #buttons {
+  margin-top: 10px;
+}
+
+ form #entrar, input[type="submit"] {
+  background-color: #294fa5!important;
+  padding: 10px 20px!important;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 40px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+ form #registrar {
+  background-color: #6f95ec;
+  width: calc(50% - 40px);
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 40px;
+  text-align: center;
+}
+ form input.login:focus {
+  border-color: #294fa5;
+  color: #294fa5;
+}
+form label {
+    font-size: 11px;
+    font-weight: normal!important;
+    color: #AAA;
+}
+
+.voltar {
+  padding: 10px 15px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: #294fa5;
+  font-size: 14px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+
+@media only screen and (max-width: 950px){
+  .login-header h1 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .login-header p {
+    font-size: 11px;
+    margin-bottom: 30px;
+  }
+  #new_user {
+    max-width: 30%!important;
+  }
+  .form-new_user {
+    max-width: 30%!important;
+  }
+
+  #login-box {
+    padding: 0 30px;
+  }
+
+}
+</style>
+  <a href="/users/sign_in"><div class="voltar"><i class="fas fa-arrow-left"></i></div></a>
+
+ <div id="login-page">
+  <div class="container">
+  	<div id="login-box">
+  		<div class="login-header">
+        <h1>Recupere sua Senha</h1>
+        <p>Insira um e-mail válido para fazer a recuperação</p>
+      </div>
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-login" }) do |f| %>
+        <div class="login-wrap">
+			  <%= devise_error_messages! %>
+
+			  <div class="field">
+			    <%= f.label :email %><br />
+			    <%= f.email_field :email, autofocus: true , placeholder: 'Digite o email', class: "form-control" %>
+			  </div>
+
+			  <div class="actions">
+			    <%= f.submit "Recuperar", class:" btn btn-success btn-login btn-sm" %>
+			  </div>
+			<% end %>
+			<br>
+			<br>
+			<br>
+
+		</div>
+  </div>
+</div>
+  </div>
+<div class="listra"></div>

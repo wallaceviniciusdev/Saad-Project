@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data final:</strong>
+  <%= @result_socio_emotional.data_final %>
+</p>
+
+<p>
+  <strong>Cons emoc:</strong>
+  <%= @result_socio_emotional.cons_emoc %>
+</p>
+
+<p>
+  <strong>Reg emoc:</strong>
+  <%= @result_socio_emotional.reg_emoc %>
+</p>
+
+<p>
+  <strong>Cons soc:</strong>
+  <%= @result_socio_emotional.cons_soc %>
+</p>
+
+<p>
+  <strong>Aut emoc:</strong>
+  <%= @result_socio_emotional.aut_emoc %>
+</p>
+
+<p>
+  <strong>Cria emoc:</strong>
+  <%= @result_socio_emotional.cria_emoc %>
+</p>
+
+<p>
+  <strong>Question socio emotional:</strong>
+  <%= @result_socio_emotional.question_socio_emotional %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @result_socio_emotional.user.nome %>
+</p>
+
+<%= link_to 'Edit', edit_result_socio_emotional_path(@result_socio_emotional) %> |
+<%= link_to 'Back', result_socio_emotionals_path %>

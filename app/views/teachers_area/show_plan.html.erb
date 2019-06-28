@@ -1,0 +1,324 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style>
+  .nav-pills .nav-link {
+    background-color: rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Montserrat'!important;
+    cursor: pointer;
+    height: 40px;
+    padding-top: 12px;
+    line-height: 40px;
+  }
+
+  .nav-pills > .nav-link > h4 {
+    font-size: 12px!important;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #1E29BD!important;
+  }
+
+  .tab-content h2 {
+    font-weight: bold;
+    padding: 15px 0 5px 0;
+    color: #294fa5;
+  }
+
+  .tab-content h4 {
+    padding: 0 0 10px 0;
+    font-size: 13px;
+  }
+
+  .tab-content p {
+    border: 1px solid rgba(0,0,0,0.02);
+    font-size: 13px;
+  }
+  .modal-header {
+    background-color: #1E29BD;
+    padding: 15px 30px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .modal-content {
+    border-radius: 6px;
+    top: 40%;
+    position: absolute;
+  }
+  .in {
+    opacity: 1!important;
+    background-color: rgba(0,0,0,0.4);
+  }
+</style>
+
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrumb-item">Carreira</li>
+    <li class="breadcrumb-item"><a href="/coordinators_area/search_plans">Buscar Planos</a></li>
+    <li class="breadcrumb-item">Resultado</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Plano de Carreira de <%= @plano.user.nome %></b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Plano de Carreira de <%= @plano.user.nome %>
+    <a href="javascript:history.back()"><h4><span class="badge badge-warning"><i class="fas fa-arrow-left"></i> Voltar</span></h4></a>
+     <%= link_to  teachers_area_pdf_plan_path(format: 'pdf', plano: @plano), :class => "btn btn-danger", style:  "float: right;" do  %> 
+            <i class="fa  fa-file-pdf-o "></i>
+        <% end %>
+    </h4>
+  </div>
+          <div class="panel-body">
+                <div class="col-lg-12">
+
+                      <ul class="nav nav-pills flex-column flex-sm-row" role="tablist">
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link active" href="#forcas" aria-controls="forcas" role="tab" data-toggle="tab"><h4>Forças</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#oportunidades" aria-controls="oportunidades" role="tab" data-toggle="tab"><h4>Oportunidades</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#fraquezas" aria-controls="fraquezas" role="tab" data-toggle="tab"><h4>Fraquezas</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#ameacas" aria-controls="ameacas" role="tab" data-toggle="tab"><h4>Ameaças</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#missao" aria-controls="missao" role="tab" data-toggle="tab"><h4>Minha missão</h4></li>
+                      <li role="presentation" class="flex-sm-fill text-sm-center nav-link" href="#objetivos" aria-controls="objetivos" role="tab" data-toggle="tab"><h4>Objetivos</h4></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="forcas">
+                        <% @plano.strengths.each do |strength|%>
+                          <h2><%= truncate(strength.text, length: 65) %></h2>
+                            <h4>Respostas:</h4>
+                            <% strength.strength_answers.each do |answer|%>
+                              <div class="alert alert-primary" role="alert">
+                                <%= truncate(answer.text, length: 140) %>
+                              </div>
+                            <% end %>
+                           <hr>
+                           <% end %>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_forca', 'data-toggle' => 'modal', :class => "btn btn-default", 'data-target' => '#new_obs_forca' %></center>
+                            <!--<div class="modal fade" id="new_obs_forca" tabindex="-1" role="dialog" aria-labelledby="new_obs_forca-label" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    <%= render 'notes/form', modal: true, topico: 'strengths'%>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>-->
+
+                            <div class="modal fade" id="new_obs_forca" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_strength_modal_title">Nova Observação</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'notes/form', modal: true,topico: 'strengths'%>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="oportunidades">
+                        <% @plano.opportunities.each do |opportunity|%>
+                        <h2><%= truncate(opportunity.text,length: 65) %></h2>
+                            <h4>Respostas:</h4>
+                            <% opportunity.opportunity_answers.each do |answer|%>
+                              <p>&nbsp; &nbsp; &nbsp; • <%= truncate(answer.text, length: 140) %></p>
+                            <% end %>
+                           <hr>
+                           <% end %>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_oportunidade', 'data-toggle' => 'modal', :class => "btn btn-default" %></center>
+                            <!--<div class="modal fade" id="new_obs_oportunidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>-->
+
+                            <div class="modal fade" id="new_obs_oportunidade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="new_obs_oportunidade">Nova Observação</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%= render 'notes/form', modal: true,topico: 'opportunities'%>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                      <div role="tabpanel" class="tab-pane" id="fraquezas">
+                        <% @plano.weaknesses.each do |weakness|%>
+                        <h2><%= truncate(weakness.text, length: 65) %></h2>
+                            <h4>Respostas:</h4>
+                            <% weakness.weakness_answers.each do |answer|%>
+                              <p>&nbsp; &nbsp; &nbsp; • <%= truncate(answer.text, length: 140) %></p>
+                            <% end %>
+                           <hr>
+                           <% end %>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_fraqueza', 'data-toggle' => 'modal', :class => "btn btn-default" %></center>
+                            <div class="modal fade" id="new_obs_fraqueza" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    <%= render 'notes/form', modal: true,topico: 'weaknesses'%>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                      <div role="tabpanel" class="tab-pane" id="ameacas">
+                        <% @plano.threats.each do |threat|%>
+                        <h2><%= truncate(threat.text, length: 65) %></h2>
+                            <h4></i>Respostas:</h4>
+                            <% threat.threats_answers.each do |answer| %>
+                              <p>&nbsp; &nbsp; &nbsp; • <%= truncate(answer.text, length: 140) %></p>
+                            <% end %>
+                           <hr>
+                           <% end %>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_ameaca', 'data-toggle' => 'modal', :class => "btn btn-default" %></center>
+                            <div class="modal fade" id="new_obs_ameaca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    <%= render 'notes/form', modal: true,topico: 'threats'%>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                   <div role="tabpanel" class="tab-pane" id="missao">
+                        <h2>Missão</h2>
+                        <p><%= @plano.mission %></p>
+                        <hr>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_missao', 'data-toggle' => 'modal', :class => "btn btn-default" %></center>
+                            <div class="modal fade" id="new_obs_missao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    <%= render 'notes/form', modal: true,topico: 'mission'%>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                      <div role="tabpanel" class="tab-pane" id="objetivos">
+                        <% @plano.objectives.each do |objective|%>
+                        <h2><%= truncate(objective.text, length: 65) %></h2>
+                        <h4>&nbsp;Limite máximo: <%= objective.data.strftime("%-d/%-m/%y") %></h4>
+
+                        <h3>&nbsp;Estratégias aos objetivos :</h3>
+                        <% objective.strategies.each do |answer|%>
+                        <h5>&nbsp;• <%= truncate(answer.text,length: 140) %></h5>
+                        <h5>&nbsp; &nbsp; &nbsp;Limite definido: <%= answer.deadline.strftime("%-d/%-m/%y") %></h5>
+
+
+                            <% end %>
+                           <hr>
+                           <% end %>
+                        <center><%= link_to ' + Adicionar Observação', '#new_obs_objectives', 'data-toggle' => 'modal', :class => "btn btn-default", 'data-target' => '#new_obs_objectives' %></center>
+                            <div class="modal fade" id="new_obs_objectives" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Nova Observação</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <%# Render the new person form (passing modal => true to enable remote => true) %>
+                                    <%= render 'notes/form', modal: true,topico: 'objetivos'%>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                      </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!--  <div class="row mt">
+   <div class="col-lg-12">
+         <div class="field">
+           <br><center><%= link_to "Gerar PDF", teachers_area_pdf_plan_path(format: 'pdf', plano: @plano), :class => "btn btn-danger"  %></center>
+         </div>
+   </div>
+</div>
+-->
+
+<script>
+  var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+  var novo_nome = nome_usuario.split(" ");
+
+  $(document).ready(function() {
+      document.title = 'Plano de Carreira - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + " - SAAD";
+  });
+</script>

@@ -1,0 +1,56 @@
+
+<p id="notice"><%= notice %></p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <center><h4>Alunos</h4></center>
+        <%# para colocar o botao verde par aa direita %>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+             <div class="table-responsive">
+                      <section id="unseen">
+                          <div id = "dados">
+                          <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                              <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Telefone</th>
+                                <!--<th>Biografia</th>
+                                <th>Matricula</th>-->
+                                <th>Email</th>
+                                <th>Instituição</th>
+                                <th>Curso</th>
+                                <!--<th>Autorizado</th>-->
+                                <th colspan="2"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% @students.each do |student| %>
+                                <tr>
+                                  <td><center><%= image_tag student.avatar.url(:thumb), class: "photos_users", width:40, height:40  %></center></td>
+                                  <td><%= student.nome %></td>
+                                  <td><%= student.matricula %></td>
+                                  <td><%= student.telefone %></td>
+                                  <!--<td><%= student.biografia %></td>
+                                  <td><%= student.matricula %></td>-->
+                                  <td><%= student.email %></td>
+                                  <td><%= student.institution.nome %></td>
+                                  <td><%= student.course.nome %></td>
+                                  <!--<td><%= student.approved %></td>-->
+
+                                  <td style="width: 50px">
+                                  <%= link_to  student, method: :delete, class:"btn btn-danger btn-login btn-sm", data: { confirm: 'Deseja realmente excluir?' } do %>
+                                    <i class="fa fa-minus"></i>
+
+                                  <% end %></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                          </table>
+                      </div>
+                    </section>
+                </div>
+            </div>
+      </div>

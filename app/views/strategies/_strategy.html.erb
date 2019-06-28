@@ -1,0 +1,8 @@
+<div>
+    Estratégia: <%= strategy.text %><br>
+    Prazo: <%= strategy.deadline %><br>
+    Fator Crítico de sucesso: <%= strategy.factor%><br>
+    Recursos: <%= strategy.resource %>
+
+    <%= link_to 'Deletar', strategy, method: :delete, remote: true, data: { confirm: 'Are you sure?' }%>
+</div>

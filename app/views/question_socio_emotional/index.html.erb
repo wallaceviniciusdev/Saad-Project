@@ -1,0 +1,337 @@
+
+<%= stylesheet_link_tag 'style-responsive'%>
+<%= stylesheet_link_tag 'table-responsive'%>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <center><h3> Análise de Competências Socioemocionais</h3></center>
+  </div>
+      <div class="row mt">
+          <div class="col-lg-12">
+            <div class="panel-body">
+
+          <%= form_tag({ :controller => "question_socio_emotional", :action => "answer"}, { :id => "myform"}) do |f| %>
+              <div id="recover">
+                <div class="row mt">
+                  <div class="col-lg-12">
+                      <h4>As afirmativas apresentadas a seguir referem-se a sua percepção/reação em diferentes situações pessoais e/ou profissionais.        Por favor, leia atentamente cada uma das frases e escolha a alternativa que melhor representa a frequência de como você lida com cada uma delas.
+                        <br></h4>
+                      <h5><b>Utilize a seguinte escala para avaliar a veracidade de cada afirmação:</b></h5>
+                      <h5>&nbsp;&nbsp;<b> 0 - Se a afirmação nunca se aplica a você.</b></h5>
+                      <h5>&nbsp;&nbsp;<b> 1 </b></h5>
+                      <h5>&nbsp;&nbsp;<b> 2 </b></h5>
+                      <h5>&nbsp;&nbsp;<b> 3 </b></h5>
+                      <h5>&nbsp;&nbsp;<b> 4 </b></h5>
+                      <h5>&nbsp;&nbsp;<b> 5 - Se a afirmação sempre se aplica a você.</b></h5>
+                      <section id="unseen" >
+                        <table class="table table-bordered table-striped table-condensed">
+                          <thead>
+                          <tr>
+                            <th>Questão</th>
+                            <th>Enunciado</th>
+                            <th class="numeric">0</th>
+                            <th class="numeric">1</th>
+                            <th class="numeric">2</th>
+                            <th class="numeric">3</th>
+                            <th class="numeric">4</th>
+                            <th class="numeric">5</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+
+                          <tr id="1">
+                            <td>1</td>
+                            <td>Percebo as minhas emoções com facilidade.</td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1a, 5) %></td>
+                          </tr>
+
+                          <tr id="2">
+                            <td>2</td>
+                            <td>Mantenho o desempenho satisfatório no trabalho/estudo, mesmo diante de situações estressantes.</td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1b, 5) %></td>
+                          </tr>
+
+                          <tr id="3">
+                            <td>3</td>
+                            <td>Coloco-me no lugar do outro para ajudá-lo a lidar com suas dificuldades.</td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1c, 5) %></td>
+                          </tr>
+
+                          <tr id="4">
+                            <td>4</td>
+                            <td>Controlo minhas palavras e ações, mesmo sob pressão.</td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1d, 5) %></td>
+                          </tr>
+
+                          <tr id="5">
+                            <td>5</td>
+                            <td>Estimulo as pessoas a alcançarem um objetivo comum por meio do compromisso mútuo.</td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q1e, 5) %></td>
+                          </tr>
+
+                          <tr id="6">
+                            <td>6</td>
+                            <td>Compreendo como minhas emoções influenciam meu comportamento.</td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2a, 5) %></td>
+                          </tr>
+
+                          <tr id="7">
+                            <td>7</td>
+                            <td>Lido com várias demandas de trabalho/estudo sem perder o equilíbrio emocional.</td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2b, 5) %></td>
+                          </tr>
+
+                          <tr id="8">
+                            <td>8</td>
+                            <td> Coopero quando trabalho em equipe.</td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2c, 5) %></td>
+                          </tr>
+
+                          <tr id="9">
+                            <td>9</td>
+                            <td>Respeito os outros quando eles têm comportamentos diferentes dos meus.</td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2d, 5) %></td>
+                          </tr>
+
+                          <tr id="10">
+                            <td>10</td>
+                            <td>Estabeleço parcerias com pessoas e organizações pensando no bem-estar social.</td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q2e, 5) %></td>
+                          </tr>
+
+                          <tr id="11">
+                            <td>11</td>
+                            <td>Entendo como os outros se sentem.</td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3a, 5) %></td>
+                          </tr>
+
+                          <tr id="12">
+                            <td>12</td>
+                            <td>Adapto-me facilmente a situações de mudança.</td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3b, 5) %></td>
+                          </tr>
+
+                          <tr id="13">
+                            <td>13</td>
+                            <td>Estou acessível quando as pessoas precisam de mim.</td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3c, 5) %></td>
+                          </tr>
+
+                          <tr id="14">
+                            <td>14</td>
+                            <td>Evito ter comportamentos explosivos diante de uma situação estressante.</td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3d, 5) %></td>
+                          </tr>
+
+                          <tr id="15">
+                            <td>15</td>
+                            <td>Gerencio os conflitos no ambiente de trabalho/estudo de forma construtiva.</td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q3e, 5) %></td>
+                          </tr>
+
+                          <tr id="16">
+                            <td>16</td>
+                            <td>Considero as dificuldades das pessoas ao lidar com elas.</td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4a, 5) %></td>
+                          </tr>
+
+                          <tr id="17">
+                            <td>17</td>
+                            <td>Busco a maior quantidade de informações antes de tomar uma decisão.</td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4b, 5) %></td>
+                          </tr>
+
+                          <tr id="18">
+                            <td>18</td>
+                            <td>Assumo a responsabilidade pelas consequências de minhas decisões.</td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4c, 5) %></td>
+                          </tr>
+
+                          <tr id="19">
+                            <td>19</td>
+                            <td>Crio oportunidades para experimentar emoções positivas.</td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q4e, 5) %></td>>
+                          </tr>
+
+                          <tr id="20">
+                            <td>20</td>
+                            <td>Mantenho relacionamentos marcados pela confiança mútua</td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5a, 5) %></td>
+                          </tr>
+
+                          <tr id="21">
+                            <td>21</td>
+                            <td>Defendo meus direitos de forma equilibrada mesmo sob pressão.</td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5b, 5) %></td>
+                          </tr>
+
+                          <tr id="22">
+                            <td>22</td>
+                            <td>Encontro soluções criativas para os problemas que enfrento.</td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q5e, 5) %></td>
+                          </tr>
+
+                          <tr id="23">
+                            <td>23</td>
+                            <td>Tenho relacionamentos marcados por atitudes de dar e receber afeto.</td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6a, 5) %></td>
+                          </tr>
+
+                          <tr id="24">
+                            <td>24</td>
+                            <td>Mantenho meu posicionamento em uma situação mesmo sob pressão.</td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q6b, 5) %></td>
+                          </tr>
+
+                          <tr id="25">
+                            <td>25</td>
+                            <td>Considero os sentimentos e as emoções dos outros antes de tomar uma decisão.</td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 0) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 1) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 2) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 3) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 4) %></td>
+                            <td class="numeric"><%= radio_button_tag(:q7a, 5) %></td>
+                          </tr>
+                          </tbody>
+                        </table>
+                   <div class="row mt mb" id="alerts-value-4">
+                      <div class="col-md-12" id="extra">
+                        <section class="task-panel tasks-widget">
+                          
+                        <%= hidden_field_tag :data_final, @data_final %>
+                      </div>
+                    </div>
+                    </section>
+                  </div><!--/col-md-12 -->
+                </div> <!-- /row mt mb -->
+
+    <center>
+        <%= submit_tag "Enviar", :class => "btn btn-login"%>
+        <%= link_to "Voltar", admin_index_path ,:class => "btn  btn-theme  btn-danger", :style=>'color:#FFFFFF;' %><br/>
+    </center>
+ 
+<% end %>
+        </div>
+      </div>
+  </div>
+</div>

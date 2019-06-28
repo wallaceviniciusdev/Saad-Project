@@ -1,0 +1,180 @@
+<%= javascript_include_tag "add_obs.js"%>
+<div class="panel panel-default">
+
+<div class="panel-heading">
+   <center><h4><%= @event.nome %></h4></center>
+</div>
+<div class="panel-body">
+  <div class="row mt">
+    <div class="col-lg-12">
+    <div class="pull-right">
+        <%= link_to 'Editar', edit_event_path(@event), class: "btn btn-login btn-sm" %>
+        <%= link_to "Gerar Lista de Inscritos", enrolled_list_events_path(format: 'pdf', event: @event), class: "btn btn-login btn-sm" %>
+        <%= link_to "Gerar Lista de Presença", attendance_list_events_path(format: 'pdf', event: @event), class: "btn btn-login btn-sm" %>
+        <%= link_to "Gerar PDF", pdf_event_events_path(format: 'pdf', event: @event), class: "btn btn-login btn-sm" %>
+      <%# link_to 'Editar', edit_event_path(@event), class: "btn btn-login btn-sm" %>
+  </div>
+          <p><center><%# image_tag @event.image.url(:medium) %></center></p>
+      <p>
+        <strong>Apresentacao:</strong>
+        <%= @event.apresentacao %>
+      </p>
+
+      <p>
+        <strong>Objetivos:</strong>
+        <%= @event.objetivos %>
+      </p>
+
+      <p>
+        <strong>Informações:</strong>
+        <%= @event.informacoes %>
+      </p>
+
+
+      <p>
+        <strong>Inicio:</strong>
+        <%= @event.inicio.strftime("%-d/%-m/%y às %H:%M") %>
+      </p>
+
+      <p>
+        <strong>Fims:</strong>
+        <%= @event.fim.strftime("%-d/%-m/%y às %H:%M") %>
+      </p>
+      <p>
+
+        <% unless @event.date_achievement.nil? %>
+          <p>
+            <strong>Datas de realização:</strong>
+            <%= @event.date_achievement %>
+          </p>
+          <p>
+        <% end %>
+
+        <strong>Criado por:</strong>
+        <%= @event.user.nome %>
+      </p>
+
+
+<% unless @event.projects.blank? %>
+  <div class="row mt">
+  <div class="col-lg-12">
+  <h4><center> Trabalhos submetidos</center></h4>
+  <section id="unseen">
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Email</th>
+        <th>Resumo</th>
+        <th>Tags</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+        <th>Evento</th>
+        <th>Arquivo</th>
+        <th>Seleção</th>
+        <th colspan="2">Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <%= form_tag({ :controller => "events", :action => "certificate_project", :format => "pdf"}, { :id => "myform"}) do |f| %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.titulo %></td>
+          <td><%= project.autor %></td>
+          <td><%= project.email %></td>
+          <td><%= project.resumo %></td>
+          <td><%= project.tags %></td>
+          <td><%= project.tipo %></td>
+          <td><%= project.estado %></td>
+          <td><%= project.event.nome %></td>
+          <td><%= link_to "Arquivo", project.file.url(:original, false) %></td>
+          <td><input type="checkbox" name="projects[]" value="<%=project.id%>" /></td>
+          <td><%= link_to 'Aprovar', approve_project_events_path(project: project) %></td>
+          <td><%= link_to 'Deletar', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </section>
+  <%= hidden_field_tag :event, @event.id%>
+  <center><%= submit_tag "Gerar Certificados de trabalho", :class => "btn btn-success btn-lg"  %></center>
+  <% end %>
+  </div>
+  </div>
+<% end %>
+<% unless @activities.blank? %>
+    <div class="row mt">
+    <div class="col-lg-12">
+    <h4><i class="fa fa-angle-right"></i> Atividades registradas</h4>
+    <section id="unseen">
+    <table class="table table-bordered table-striped table-condensed">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Nome</th>
+          <th>Palestrante</th>
+          <th>Evento</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody id= "activities">
+        <%= render @activities%>
+      </tbody>
+    </table>
+    </section>
+    </div>
+    </div>
+  <% end %>
+  <% unless @event.matriculations.blank? %>
+    <div class="row mt">
+    <div class="col-lg-12">
+    <h4><center>Usuarios inscritos no evento</center></h4>
+    <section id="unseen">
+    <table class="table table-bordered table-striped table-condensed">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Tipo</th>
+          <th>Presente</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <%= form_tag({ :controller => "events", :action => "certificate_event", :format => "pdf"}, { :id => "myform"}) do |f| %>
+      <div class="row">
+          <div class="col-lg-2">
+            <label> Template</label>
+            <%=select_tag "template", raw("<option>NAC</option><option>CADM</option><option>PGPCI</option><option>PPGA</option>"),class:"form-control" %>
+          </div></div><br>
+
+        <% @matriculations.each do |registration| %>
+          <tr>
+            <td><%= registration.nome %></td>
+            <td><%= registration.email %></td>
+            <td><%= registration.telefone %></td>
+            <td><%= registration.tipo %></td>
+            <td><input type="checkbox" name="matriculations[]" value="<%=registration.id%>" /></td>
+            <td><%= link_to 'Deletar', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+    </section>
+    <%= hidden_field_tag :event, @event.id%>
+    <center><%= submit_tag "Gerar Certificados", :class => "btn btn-login btn-lg"  %></center>
+      <% end %>
+  </div>
+  </div>
+  <% end %>
+<br>
+    </div>
+  </div>
+  </div>
+</div>

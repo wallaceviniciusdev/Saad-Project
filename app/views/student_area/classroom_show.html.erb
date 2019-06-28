@@ -1,0 +1,80 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href=https://daneden.github.io/animate.css/animate.min.css">
+
+<div class="background"></div>
+<div class="navegacao">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Início</a></li>
+    <li class="breadcrum-item">Turmas</li>
+    <li class="breadcrumb-item"><a href="javascript:;"><b>Minhas Turmas</b></a></li>
+  </ol>
+</nav>
+  </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Turma</h4>
+  </div>
+            <div class="panel-body">
+                    <section id="unseen">
+                      <div id = "dados">
+                        <div class="alert alert-primary" role="alert">
+                      <table class="table">
+                      <h4 style="font-weight: bold; margin-top: 10px;"><i class="fa fa-user"></i> Professores</h4>
+                        <thead>
+                          <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <!--<th>Autorizado</th>-->
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% @classroom.teachers.each do |teacher| %>
+                            <tr>
+                              <td><center><%= image_tag teacher.avatar.url(:thumb), :class => "photos_users"  , width:40, height:40 %></center></td>
+                              <td><%= teacher.nome %></td>
+                              <td><%= teacher.email %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="alert alert-primary" role="alert">
+                      <table class="table">
+                      <h4 style="font-weight: bold; margin-top: 10px;"><i class="fa fa-graduation-cap"></i> Alunos</h4>
+                        <thead>
+                          <tr>
+                            <th>Foto</th>
+                            <th>Nome</th>
+                            <th>Matricula</th>
+                            <th>Email</th>
+                            <!--<th>Autorizado</th>-->
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% @classroom.students.each do |student| %>
+                            <tr>
+                              <td><center><%= image_tag student.avatar.url(:thumb), :class => "photos_users"  , width:40, height:40 %></center></td>
+                              <td><%= student.nome %></td>
+                              <td><%= student.matricula %></td>
+                              <td><%= student.email %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                      </div>
+                    </section>
+                  </div>
+            </div>
+</div>

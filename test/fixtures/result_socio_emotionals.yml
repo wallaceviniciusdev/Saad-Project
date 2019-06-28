@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cons_emoc: 1.5
+  reg_emoc: 1.5
+  cons_soc: 1.5
+  aut_emoc: 1.5
+  cria_emoc: 1.5
+  question_socio_emotional_id: 1
+  user_id: 1
+
+two:
+  cons_emoc: 1.5
+  reg_emoc: 1.5
+  cons_soc: 1.5
+  aut_emoc: 1.5
+  cria_emoc: 1.5
+  question_socio_emotional_id: 1
+  user_id: 1

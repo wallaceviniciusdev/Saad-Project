@@ -1,0 +1,609 @@
+ 
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<style>
+  @import url("https://daneden.github.io/animate.css/animate.min.css");
+  body {
+    background: #f2f7fb!important;
+    font-family: 'Montserrat'!important;
+  }
+
+  .header {
+    z-index: 0;
+  }
+  
+  .alert {
+    margin: 0!important;
+  }
+
+  .badge-notify{
+   background:red;
+   position:relative;
+   top: -15px;
+   left: -8px;
+  }
+  
+  .ativ-notification {
+    margin-top: 25px;
+    margin-right: 5px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .ativ-notification:nth-child(1){
+    margin-right: 10px;
+  }
+
+  .ativ-notification i {
+    color: white!important;
+    font-size: 21px;
+  }
+
+  .ativ-notification h6 {
+    color: white;
+    font-size: 12px;
+    float: right;
+    margin-left: 5px;
+    margin-top: 3px;
+  }
+
+  .ativ-notification:nth-child(1) h6, .ativ-notification:nth-child(2) h6, .ativ-notification:nth-child(3) h6{
+    margin-right: 20px;
+    border-right: 1px solid rgba(255,255,255,0.5);
+    padding-right: 20px;
+  }
+
+  h1.h1-notifi {
+    font-size: 14px;
+    color: white;
+    float: right;
+  }
+
+  .dropdown {
+    display: inline-block;
+    top: -5px;
+  }
+
+  .img-circle {
+    width: 35px;
+    height: 35px;
+  }
+
+  .background {
+    background: linear-gradient(to bottom, #0984e3,#0984e3);
+    width: 100%;
+    height: 340px;
+    position: absolute;
+    z-index: -1;
+    top: -60px;
+    left: 0;
+  }
+  
+  .atividades {
+    width: 250px;
+    min-height: 300px;
+    max-height: 300px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05),0 0 0 1px rgba(0,0,0,0.05);
+    position: absolute;
+    z-index: 4;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .atividades:nth-child(1){
+    margin-left: -100px;
+  }
+
+  .atividades::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 225px;
+    margin-top: -22px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+  }
+  
+  .content ul {
+    padding: 0;
+  }
+
+  .content ul li {
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    padding: 10px 20px;
+    list-style: none;
+    transition: all 0.2s;
+  }
+
+  .content ul li:nth-child(1){
+    border-top: 1px solid rgba(0,0,0,0.07);
+    margin-top: 10px;
+  }
+  
+  .content ul li:hover {
+    background: rgba(52, 152, 219, 0.05);
+    padding-left: 25px;
+  }
+  
+  .content ul li {
+    color: black!important;
+    font-family: 'Montserrat'!important;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+
+  .modal-open .container-fluid, .modal-open  .container, .modal-open .container-fluid, .modal-open  .background {
+    -webkit-filter: blur(5px) grayscale(50%);
+}
+
+  .atividades h1 {
+    color: #294fa5!important;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 20px;
+  }
+
+  .atividades h1 i {
+    color: #294fa5!important;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .user-slide {
+    padding: 20px 0;
+  }
+
+  .user-slide h1 {
+    color: white;
+    font-size: 30px;
+    margin-top: 25px;
+  }
+
+  .user-slide h6 {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .user-slide button {
+    background-color: #3498db;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    font-weight: bold;
+    margin-top: 15px;
+    outline: none;
+  }
+
+  .user-slide .user-img {
+    width: 98px;
+    height: 98px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    margin-right: 40px;
+    margin-top: 30px;
+    float: left;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .links {
+    margin-top: 20px;
+  }
+
+  .btn-primary {
+    padding: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    color: #007bff!important;
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .card {
+    height: auto;
+    box-shadow: none!important;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+  }
+
+  .card:hover {
+  }
+
+  .card-columns .card {
+    margin-bottom: 10px;
+  }
+
+  .box-title h6 {
+    color: grey;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  } 
+  
+  .box-title h1 {
+    max-width: 200px;
+    color: #294fa5;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .box-title span {
+    padding: 12px 16px;
+    border-radius: 50px;
+    font-size: 16px;
+    color: white;
+    float: right;
+    margin-top: -6px;
+  }
+  
+  .modal-header {
+    background-color: #1E29BD;
+    padding: 15px 30px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .modal-content {
+    border-radius: 6px;
+  }
+
+  li.sair {
+    color: white!important;
+    list-style: none;
+  }
+
+  li.sair a {
+    color: white!important;
+    font-size: 13px;
+  }
+
+
+  @media only screen and (max-width: 600px) {
+    .user-slide .user-img {
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 80px;
+    }
+
+    .user-slide h1 {
+      font-size: 22px;
+    }
+    
+    .user-slide h6 {
+      font-size: 12px;
+    }
+
+    .background {
+      height: 600px!important;
+    }
+
+    .user-slide {
+      text-align: center;
+    }
+
+
+    .pull-right {
+      margin-top: -75px!important;
+    }
+
+    .ativ-notification h6 {
+      display: none;
+    }
+
+    .card-columns {
+      margin-top: 150px!important;
+    }
+
+    a.logo img {
+      width: 70px!important;
+    }
+
+    .box-title h1 {
+      font-size: 16px;
+    }
+
+    .box-title h6 {
+      font-size: 9px;
+    }
+
+    .box-title span {
+      padding: 9px 12px;
+      font-size: 12px;
+    }
+
+    .ativ-notification i {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+</style>
+
+
+<!-- Questionários -->
+<div class="modal fade" id="questionarios" tabindex="-1" role="dialog" aria-labelledby="questionarios" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="questionarios">Questionários Abertos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content content-questionario">
+          <ul>
+            <% if @my_quizzes.size > 0 && @my_quizzes != nil%>
+              <% @my_quizzes.each do |quiz| %>
+
+                <li><%= link_to "#{quiz.data_final}", quiz_index_path(:data_final => quiz.data_final), :method=> :post %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Atividades -->
+<div class="modal fade" id="atividades_modal" tabindex="-1" role="dialog" aria-labelledby="atividades_modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="atividades_modal">Estilo de Aprendizagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content content-atividade">
+          <ul>
+            <% if @atividades.size > 0%>
+              <% @atividades.each do |atividade| %>
+                <% unless atividade.status == "finalizado" %>
+                  <a href="<%= new_answer_path(:atividade_extra => atividade) %>"><li><%= "#{atividade.titulo}" %></li></a>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="emocional_modal" tabindex="-1" role="dialog" aria-labelledby="atividades_modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emocional_modal">Questionários de Competências Socioemocionais</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content content-emocional">
+          <ul>
+            <% if @my_question_socio_emotionals != nil && @my_question_socio_emotionals.size > 0%>
+               <% @my_question_socio_emotionals.each do |question_socio_emotional| %>
+                <% unless atividade.status == "finalizado" %>
+                  <a href="<%= question_socio_emotional_index_path(:data_final => question_socio_emotional.data_final) %>"><li><%= "#{question_socio_emotional.data_final}" %></li></a>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="background"></div>
+<div class="container">
+  <div class="pull-right" style="margin-top: -80px; z-index: 9;">
+    <div class="ativ-notification" data-toggle="modal" data-target="#emocional_modal">
+      <i class="fas fa-grin-alt"></i>
+      <span class="quest badge badge-notify"></span>
+      <h6>Competências Socioemocionais</h6>
+    </div>
+
+    <div class="ativ-notification" data-toggle="modal" data-target="#questionarios">
+      <i class="fas fa-clipboard-list"></i>
+      <span class="quest badge badge-notify"></span>
+      <h6>Questionários</h6>
+    </div>
+
+    <div class="ativ-notification" data-toggle="modal" data-target="#atividades_modal">
+      <i class="fas fa-book"></i>
+      <span class="ativ badge badge-notify"></span>
+      <h6>Atividades</h6>
+    </div>  
+
+    <div class="ativ-notification">
+      <i class="fas fa-sign-out-alt"></i>
+      <h6><li class="sair"><%= link_to "Sair", destroy_user_session_path, :method => 'delete', class: "logout" %></li></h6>
+    </div>
+  </div>
+
+  <div class="user-slide">
+    <div class="user-img" style="background-image: url('<%= current_user.avatar.url(:thumb) %>')"></div>
+    <h1>
+      <% if current_user.sex == 'Feminino' %>
+        Seja Bem-vinda 
+      <% elsif current_user.sex == 'Masculino' %>
+        Seja Bem-vindo
+      <% elsif current_user.sex == 'Outros' %>
+        Seja Bem-vindx
+      <% end %>
+      <span class="nome-user"></span>
+    </h1>
+    <a href="<%= edit_user_registration_path %>"><button><i class="fas fa-cog"></i> Editar Perfil</button></a>
+  </div>
+
+  <div class="card-columns" style="margin-top: 130px;">
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+            <span style="background: #3498db;"><i class="fas fa-id-card"></i></span>
+            <h1>Carreira</h1>
+      </div>
+      <div class="links" style="margin-top: 40px;">
+        <%= link_to 'Currículo', student_area_edit_curriculo_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>
+        <% if current_user.plano == nil %>
+        <%= link_to 'Criar plano', new_plano_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>
+        <% elsif current_user.plano != nil%>
+        <%= link_to 'Editar plano', student_area_my_plan_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", :method=> :post %>
+        <% end %>
+        <%= link_to 'Âncoras', student_area_my_result_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", :method=> :post %>
+        <%= link_to 'Comparar Âncoras', student_area_compare_anchors_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", :method=> :post %>       
+      </div>     
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #9b59b6;"><i class="fas fa-book"></i></span>
+          
+          <h1>Atividades Extras</h1>
+    </div>
+    <div class="links">
+      <%= link_to 'Atividades', student_area_list_atividades_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block"%>   
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #2ecc71;"><i class="fas fa-brain"></i></span>
+          
+          <h1>Estilos de Aprendizagem</h1>
+    </div>
+    <div class="links">
+      <%= link_to 'Resultados', student_area_my_learning_result_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", :method=> :post %>
+      <%= link_to 'Comparar Resultados', student_area_compare_learning_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block", :method=> :post %>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #e74c3c;"><i class="fas fa-video"></i></span>
+          
+          <h1>Vídeos</h1>
+    </div>
+    <div class="links" style="margin-top: 40px;">
+       <%= link_to 'Videos Recebidos', student_area_videos_index_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>   
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #1abc9c;"><i class="fas fa-users"></i></span>
+          
+          <h1>Turmas</h1>
+    </div>
+    <div class="links" style="margin-top: 40px;">
+      <%= link_to "Ver", student_area_classrooms_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>      
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #f1c40f;"><i class="fas fa-grin-alt"></i></span>
+          
+          <h1>Competências Socioemocionais</h1>
+    </div>
+    <div class="links">
+      <%= link_to 'Meus resultados', student_area_my_result_socio_emotional_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" ,method: :post %>
+      <%= link_to 'Comparar resultados', student_area_compare_socio_emotional_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" ,method: :post %> 
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="box-title">
+          <span style="background: #34495e;"><i class="fas fa-puzzle-piece"></i></span>
+          
+          <h1>Casos para Ensino</h1>
+    </div>
+    <div class="links">
+      <%= link_to 'Meus Casos', student_area_list_cases_path,style:'color:#FFFFFF;',class: "btn btn-primary btn-lg btn-block" %>    
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+    $(".card-columns").addClass("animated bounceInUp")
+    $(".pull-right").addClass("animated bounceInDown")
+    $(".logo").addClass("animated bounceInDown")
+    $(".user-slide").addClass("animated bounceInLeft")
+    var nome_usuario = "<%= current_user.nome.downcase.titleize %>";
+    var novo_nome = nome_usuario.split(" ");
+    $(".nome-user").html("<span style='font-weight:bold;'>" + novo_nome[0] + " " + novo_nome[novo_nome.length-1] + '</span>');
+
+
+    $(document).ready(function() {
+        document.title = 'SAAD - ' + novo_nome[0] + " " + novo_nome[novo_nome.length-1];
+    });
+
+    $(".atividades").hide();
+    $(".alerta").hide();
+    $(".ativ-notification").click(function(){
+      $(this).find(".atividades").toggle(100);
+    })
+
+    var cont1 = 0, cont2 = 0, cont3 = 0;
+    <% @atividades.each do |atividade| %>
+      <% if atividade.status != "finalizado"%>
+        cont1++;
+      <% end %>
+    <% end %>
+    $(".ativ").text(cont1);
+    if(cont1 == 0){
+      $(".content-atividade").css("margin", "0!important")
+      $(".content-atividade").html("<div class='alert alert-primary' role='alert'>Nenhum questionário para ser respondido</div>")
+    }
+
+    <% @my_quizzes.each do |quiz| %>
+      <% if quiz != nil%>
+        cont2++;
+      <% end %>
+    <% end %>
+    $(".quest").text(cont2);
+    if(cont2 == 0){
+      $(".content-questionario").html("<div class='alert alert-primary' role='alert'>Nenhum questionário para ser respondido</div>")
+    }
+
+    <% @my_question_socio_emotionals.each do |question_socio_emotional| %>
+      <% if @my_question_socio_emotionals != nil && @my_question_socio_emotionals.size > 0%>
+        cont3++;
+      <% end %>
+    <% end %>
+    if(cont3 == 0){
+      $(".content-emocional").html("<div class='alert alert-primary' role='alert'>Nenhum questionarios de competências socioemocionais para ser respondido</div>")
+    }
+
+    if(cont1 == 0 || cont2 == 0){
+      $(".alerta").show();
+      $(".alerta").html("Você tem questionários ou atividades para resolver");
+    }
+</script>

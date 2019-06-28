@@ -1,0 +1,88 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<%= javascript_include_tag 'search_learning' %>
+            <%= form_tag({ :controller => "results", :action => "analytic_list"}, { :id => "form2"}) do |f| %>
+        <div class="row">
+          <div class="col-lg-6">
+             <div class="alert alert-primary" role="alert">
+                Seleção 1
+              </div>
+              <%= hidden_field_tag :institution_id, @institution.id %>
+
+              <%= hidden_field_tag :campu_id, @campu.id %>
+
+              <%= hidden_field_tag :center_id, @center.id %>
+
+              <%= hidden_field_tag :course_id, @course.id %>
+
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <%= label_tag :Disciplina %>
+                    <%= collection_select(nil, :subject_id, @subjects, :id, :nome,{}, {class: "form-control"})%>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <%= label_tag :ano %>
+                  <%= select_tag "ano", options_for_select(@anos), :class => "form-control"%>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <%= label_tag :semestre %>
+                  <%= select_tag "semestre", options_for_select(@semestres), :class => "form-control"%>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                  <%= label_tag :Turma %>
+                  <%= collection_select(nil, :classroom_id, @classrooms, :id, :codigo,{}, {class: "form-control"})%>
+                  </div>
+                  <div class="form-group col-md-6">
+                  <%= label_tag :Usuarios %>
+                  <%= collection_select(nil, :users_id, @students, :id, :nome,{}, {class: "form-control"})%>
+                  </div>
+                </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="alert alert-primary" role="alert">
+                Seleção 2
+              </div>
+            <div class="field">
+              <%= hidden_field_tag :institution2_id, @institution.id %>
+
+              <%= hidden_field_tag :campu2_id, @campu.id %>
+
+              <%= hidden_field_tag :center2_id, @center.id %>
+
+              <%= hidden_field_tag :course2_id, @course.id %>
+
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <%= label_tag :Disciplina %>
+                    <%= collection_select(nil, :subject2_id, @subjects, :id, :nome,{}, {class: "form-control"})%>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <%= label_tag :ano %>
+                  <%= select_tag "ano2", options_for_select(@anos), :class => "form-control"%>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <%= label_tag :semestre %>
+                  <%= select_tag "semestre2", options_for_select(@semestres), :class => "form-control"%>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                  <%= label_tag :Turma %>
+                  <%= collection_select(nil, :classroom2_id, @classrooms, :id, :codigo,{}, {class: "form-control"})%>
+                  </div>
+                  <div class="form-group col-md-6">
+                  <%= label_tag :Usuarios %>
+                  <%= collection_select(nil, :users2_id, @students, :id, :nome,{}, {class: "form-control"})%>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+            <center><%= submit_tag "Comparar" %>
+            </center>
+
+<% end %>
+
